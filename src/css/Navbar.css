@@ -1,0 +1,76 @@
+.navbar {
+  width: 100%;
+  padding: 20px 30px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.brand-name {
+  font-family: "Love";
+  margin-bottom: 30px;
+}
+
+.menu-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 450px;
+}
+
+.menu a {
+  font-size: 1.1rem;
+}
+
+.menu-bars {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.shopping-bag {
+  cursor: pointer;
+  background-color: black;
+  border: none;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  right: 0;
+  bottom: -5px;
+}
+
+.shopping-icon {
+  color: white;
+  z-index: 2;
+  font-size: 0.8rem;
+}
+
+@media screen and (min-width: 900px) {
+  .navbar {
+    margin: 40px 60px 50px 40px;
+  }
+
+  .menu {
+    display: flex;
+  }
+
+  .shopping-bag {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+  }
+
+  .shopping-icon {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,91 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.home img {
+  width: 200px;
+}
+
+.welcome {
+  position: relative;
+}
+
+.welcome img {
+  width: 100%;
+}
+
+.welcome .tagline {
+  font-family: "NewYork";
+  color: white;
+  position: absolute;
+  font-size: 1.5rem;
+  top: 30px;
+  left: 50px;
+}
+
+.welcome .description {
+  color: white;
+  position: absolute;
+  font-size: 0.7rem;
+  top: 90px;
+  left: 70px;
+}
+
+.welcome .explore {
+  position: absolute;
+  bottom: 50px;
+  left: 70px;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.scroll-down {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.6rem;
+  transform: rotate(90deg);
+  color: white;
+  bottom: 60px;
+  left: -30px;
+}
+
+.scroll-down .line {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: white;
+  margin: 0 10px 0 0;
+}
+
+.latest-product {
+  margin: 40px 0 40px 0;
+  position: relative;
+  right: 80px;
+}
+
+.latest-product p {
+  font-size: 1.1rem;
+  font-family: "Prompt", sans-serif;
+}
+
+.latest-product span {
+  margin-top: 5px;
+  background-color: #c4d9d5;
+  display: block;
+  width: 150px;
+  height: 3px;
+}
+
+.products {
+  display: grid;
+  gap: 40px 0;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+}
