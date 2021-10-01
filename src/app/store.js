@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import kemejaReducer from './kemejaSlice';
+import keranjangReducer from './keranjangSlice';
+import itemReducer from './itemSlice';
+import navbarReducer from './navbarSlice';
 
 export const store = configureStore({
   reducer: {
-    kemejaRed: kemejaReducer,
+    keranjangRed: keranjangReducer,
+    itemRed: itemReducer,
+    navbarRed: navbarReducer
   },
 })

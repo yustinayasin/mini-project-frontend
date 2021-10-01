@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './pages/Home';
 import Details from './pages/Details';
+import Sale from './pages/Sale';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, withRouter, Route, Switch } from "react-router-dom";
 import {
@@ -62,6 +63,7 @@ ReactDOM.render(
         <Router>
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/sale" exact component={Sale} />
             <Route path="/details" exact component={Details} />
           </Switch>
         </Router>

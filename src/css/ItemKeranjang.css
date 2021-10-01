@@ -8,8 +8,8 @@
 .item {
   width: 100%;
   display: grid;
-  grid-template-columns: "1fr 4fr";
-  grid-template-rows: "auto";
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: auto;
   grid-template-areas: "photo description" "action action";
   gap: 20px 10px;
 }
@@ -21,6 +21,16 @@
 
 .item-details span {
   display: block;
+}
+
+.item-details .btn-size {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  border: none;
+  background-color: #343434;
+  color: white;
+  cursor: pointer;
 }
 
 .item .item-details {

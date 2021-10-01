@@ -2,11 +2,20 @@
   display: grid;
   grid-template-columns: 200px;
   grid-template-rows: auto;
-  grid-template-areas: "img" "price" "name" "button";
+  grid-template-areas: "desc" "button";
   gap: 10px 0;
   font-family: "Prompt", sans-serif;
   font-size: 0.8rem;
   cursor: pointer;
+}
+
+.product-card a {
+  display: grid;
+  grid-template-columns: 200px;
+  grid-template-rows: auto;
+  grid-template-areas: "img" "price" "name";
+  gap: 10px 0;
+  grid-area: desc;
 }
 
 .product-card img {

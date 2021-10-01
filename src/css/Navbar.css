@@ -16,26 +16,27 @@
 .menu-wrapper {
   display: flex;
   width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-wrapper {
+  width: 100%;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.menu {
-  display: none;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: 450px;
-}
-
-.menu a {
-  font-size: 1.1rem;
-}
-
-.menu-bars {
-  font-size: 1.5rem;
+.button-wrapper .menu-bars {
+  border: none;
+  background-color: transparent;
   cursor: pointer;
+}
+
+.menu-bars .menu-bars-icon {
+  font-size: 1.5rem;
 }
 
 .shopping-bag {
@@ -45,8 +46,8 @@
   border-radius: 30px;
   width: 30px;
   height: 30px;
-  right: 0;
-  bottom: -5px;
+  /* right: 0;
+  bottom: -5px; */
 }
 
 .shopping-icon {
@@ -54,6 +55,44 @@
   z-index: 2;
   font-size: 0.8rem;
 }
+
+.menu {
+  /* display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 450px; */
+  padding: 20px 0;
+  width: 100%;
+  transform: translateY(-100%);
+  position: absolute;
+  /* position: static; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu.active {
+  transform: translateY(0);
+  position: static;
+}
+
+.menu a {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 10px 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.menu a:hover {
+  background-color: #c4c4c4;
+}
+
+/* .menu-bars.non-actiive {
+  display: none;
+} */
 
 @media screen and (min-width: 900px) {
   .navbar {

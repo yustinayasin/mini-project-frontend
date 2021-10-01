@@ -1,8 +1,8 @@
 import { useSubscription } from '@apollo/client';
-import {subsAllData} from '../graphql/subscribe';
+import {subsAllKemeja} from '../graphql/subscribe';
 
 export default function useSubscribeKemeja (variables) {
-    const {data, loading, error} = useSubscription(subsAllData, variables);
+    const {data, loading, error} = useSubscription(subsAllKemeja, variables);
 
     return {
         data,

@@ -58,11 +58,13 @@ img {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #6b6767;
   background-color: #6b6767;
   width: 25px;
   height: 25px;
   border-radius: 30px;
   color: white;
+  position: relative;
 }
 
 .size-chart div:nth-of-type(2) {
@@ -108,4 +110,9 @@ img {
   justify-self: stretch;
   margin-top: 30px;
   font-size: 0.9rem;
+}
+
+.stock-info svg {
+  font-size: 0.8rem;
+  margin-right: 5px;
 }

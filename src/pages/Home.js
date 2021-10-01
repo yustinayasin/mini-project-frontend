@@ -4,17 +4,25 @@ import Footer from '../component/Footer';
 import welcome from '../images/welcome.jpg';
 import '../css/Home.css';
 import { Link } from "react-router-dom";
-import useSubscribe from '../hooks/useSubscribeKemeja';
+import useSubscribeKemeja from '../hooks/useSubscribeKemeja';
 import { useState, useEffect } from 'react';
 import ModalKeranjang from '../component/ModalKeranjang';
+import useInsertKeranjang from '../hooks/useAddKeranjang';
+import useDeleteKeranjang from '../hooks/useDeleteKeranjang';
+import useEditKeranjang from '../hooks/useEditKeranjang';
+import useSubscribeKeranjang from '../hooks/useSubscribeKeranjang';
+import ModalSize from '../component/ModalSize';
+
 
 function Home() {
   const [kemejaGetQuery, setKemejaGetQuery] = useState({
     variables: {where: {}}
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const {data, loading, error} = useSubscribe(kemejaGetQuery);
+  const {data, loading, error} = useSubscribeKemeja(kemejaGetQuery);
+  const {dataKeranjang, loadingKeranjang} = useSubscribeKeranjang();
+  const {insertKeranjang, loadingInsert} = useInsertKeranjang();
+  const {deleteKeranjang, loadingDelete} = useDeleteKeranjang();
+  const {editKeranjang, loadingEdit} = useEditKeranjang();
 
   useEffect(() => {
     setKemejaGetQuery({
@@ -24,17 +32,9 @@ function Home() {
     });
   }, []);
 
-  const getDetails = (id) => {
-    setKemejaGetQuery(
-      {variables: 
-        {'id': id}
-      }
-    );
-  }
-  
   return (
     <div className="home">
-      <Navbar isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+      <Navbar/>
       <div className="welcome">
         <img src={welcome} alt="welcome"/>
         <h1 className="tagline">From Personal <br/> To Professional</h1>
@@ -59,24 +59,18 @@ function Home() {
       <div className="products">
         {
           loading ? "Loading..." :
-          data.kemeja.slice(data.kemeja.length-6, data.kemeja.length).map((item) => {
-            return(
-              <Link 
-                key={item.id}
-                to={{
-                  pathname: "/details",
-                  item: item
-                }}
-              >
-                  <ProductCard
-                    item={item}
-                  />
-              </Link>
-            );
-          })
+          <ProductCard
+            data={data}
+            insertKeranjang={insertKeranjang}
+          />
         }
       </div>
-      <ModalKeranjang isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+      <ModalKeranjang 
+        dataKeranjang={dataKeranjang} 
+        deleteKeranjang={deleteKeranjang} 
+        editKeranjang={editKeranjang}
+      />
+      <ModalSize insertKeranjang={insertKeranjang} editKeranjang={editKeranjang}/>
       <Footer/>
     </div>
   );
