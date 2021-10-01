@@ -1,5 +1,6 @@
 import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from "react-icons/fa";
 import '../css/Footer.css';
+import { Link } from "react-router-dom";
 
 export default function footer() {
     return(
@@ -14,16 +15,16 @@ export default function footer() {
             </div>
             <ul className="sub-menu">
                 <li>
-                    <a href="#">FAQ</a>
+                    <Link to="/faq">FAQ</Link>
                 </li>
                 <li>
-                    <a href="#">ABOUT US</a>
+                    <Link to="/about-us">ABOUT US</Link>
                 </li>
                 <li>
-                    <a href="#">HOW TO ORDER</a>
+                    <Link to="/how-to-order">HOW TO ORDER</Link>
                 </li>
                 <li>
-                    <a href="#">CONTACT US</a>
+                    <Link to="/contact-us">CONTACT US</Link>
                 </li>
             </ul>
             <div className="social-media">

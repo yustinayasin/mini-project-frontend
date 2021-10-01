@@ -6,7 +6,7 @@ import { setItem } from '../app/itemSlice';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
-export default function ProductCard ({data}) {
+export default function ProductCard ({data, isShop}) {
     const isModalSizeOpen = useSelector((state) => state.keranjangRed.isModalSizeOpen);
     const isModalQuantityOpen = useSelector((state) => state.keranjangRed.isModalQuantityOpen);
     const item = useSelector((state) => state.itemRed.item);
@@ -16,8 +16,14 @@ export default function ProductCard ({data}) {
 
     useEffect(() => {
         if(data.kemeja) {
-            const newData = data?.kemeja.slice(data.kemeja.length-6, data.kemeja.length);
-            setData2(newData);
+            if(isShop) {
+                setData2(data?.kemeja.sort(function(a,b) {return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0);}));
+            } else {
+                const newData = data?.kemeja
+                                .sort(function(a,b) {return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0);})
+                                .slice(data.kemeja.length-6, data.kemeja.length);
+                setData2(newData);
+            }
         } else {
             setIsSale(true);
             setData2(data?.sale);

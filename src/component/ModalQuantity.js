@@ -12,8 +12,10 @@ export default function ModalSize({size, insertKeranjang}) {
     const dispatch = useDispatch();
 
     const addToBag = (e) => {
-        insertKeranjang({variables: {'id_kemeja': item.id, 'jumlah': e.target.value, 'size': size, 'pembelian_id': null}});
-        alert('Item successfully added to cart!');
+        if(item['stock_'+size]>=e.target.value) {
+            insertKeranjang({variables: {'id_kemeja': item.id, 'jumlah': e.target.value, 'size': size, 'pembelian_id': null}});
+            alert('Item successfully added to cart!');
+        }
     }
 
     return(

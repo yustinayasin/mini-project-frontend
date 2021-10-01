@@ -18,15 +18,19 @@ export default function ModalSize({insertKeranjang, editKeranjang}) {
     const [size, setSize] = useState('S');
 
     const pickQuantity = (e) => {
-        setSize(e.target.value);
-        dispatch(setIsModalSizeOpen({modalsize: false}));
-        dispatch(setIsModalQuantityOpen({modalquantity: true}));
+        if(item['stock_'+e.target.value]>0) {
+            setSize(e.target.value);
+            dispatch(setIsModalSizeOpen({modalsize: false}));
+            dispatch(setIsModalQuantityOpen({modalquantity: true}));
+        }
     }
 
     const editSize = (e) => {
-        dispatch(setIsKeranjangEdit({isKeranjangEdit: false}));
-        editKeranjang({variables: {id: keranjangEdit.id, jumlah: keranjangEdit.jumlah, size: e.target.value}});
-        dispatch(setIsModalSizeOpen({modalsize: false}));
+        if(item['stock_'+e.target.value]>0) {
+            dispatch(setIsKeranjangEdit({isKeranjangEdit: false}));
+            editKeranjang({variables: {id: keranjangEdit.id, jumlah: keranjangEdit.jumlah, size: e.target.value}});
+            dispatch(setIsModalSizeOpen({modalsize: false}));
+        }
     }
 
     return(

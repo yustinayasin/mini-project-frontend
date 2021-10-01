@@ -46,7 +46,7 @@ function Home() {
           formal activities. What you need is all <br/>
           here.
         </p>
-        <a className="explore" href="#">Explore Product</a>
+        <Link to="/shop" className="explore">Explore Product</Link>
         <div className="scroll-down">
           <span className="line"></span>
           <span>scroll down</span>

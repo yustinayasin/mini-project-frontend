@@ -34,6 +34,7 @@
   font-size: 0.7rem;
   top: 90px;
   left: 70px;
+  margin: 0;
 }
 
 .welcome .explore {
@@ -42,6 +43,7 @@
   left: 70px;
   color: white;
   font-size: 0.8rem;
+  text-decoration: underline;
 }
 
 .scroll-down {

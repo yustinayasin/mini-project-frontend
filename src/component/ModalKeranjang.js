@@ -3,12 +3,20 @@ import ItemKeranjang from "./ItemKeranjang";
 import '../css/ModalKeranjang.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsKemejaKeranjangOpen } from '../app/keranjangSlice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ModalKeranjang({dataKeranjang, deleteKeranjang, editKeranjang}) {
     const isModalKeranjangOpen = useSelector((state) => state.keranjangRed.isModalKeranjangOpen);
     const dispatch = useDispatch();
     const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+        let total=0;
+        dataKeranjang?.keranjang.forEach((item) => {
+            total=total+item.kemeja.harga*item.jumlah;
+        })
+        setTotalPrice(total);
+    }, [dataKeranjang]);
 
     return(
         <div className={isModalKeranjangOpen ? "modal-keranjang-wrapper active" : "modal-keranjang-wrapper"}>

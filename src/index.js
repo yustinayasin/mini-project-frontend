@@ -4,6 +4,9 @@ import './index.css';
 import Home from './pages/Home';
 import Details from './pages/Details';
 import Sale from './pages/Sale';
+import Shop from './pages/Shop';
+import AboutUs from './pages/AboutUs';
+import NotFound from './pages/NotFound';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, withRouter, Route, Switch } from "react-router-dom";
 import {
@@ -65,10 +68,13 @@ ReactDOM.render(
             <Route path="/" exact component={Home} />
             <Route path="/sale" exact component={Sale} />
             <Route path="/details" exact component={Details} />
+            <Route path="/shop" exact component={Shop} />
+            <Route path="/about-us" exact component={AboutUs} />
+            <Route component={NotFound} />
           </Switch>
         </Router>
       </Provider>
-    </ApolloProvider>,
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

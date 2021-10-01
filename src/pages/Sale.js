@@ -20,10 +20,6 @@ function Sale() {
   const {deleteKeranjang, loadingDelete} = useDeleteKeranjang();
   const {editKeranjang, loadingEdit} = useEditKeranjang();
 
-//   useEffect(() => {
-//       console.log(dataSale);
-//   }, [dataSale]);
-
   return (
     <div className="sale">
       <Navbar/>
@@ -36,7 +32,7 @@ function Sale() {
           loadingSale ? "Loading..." :
           <ProductCard
             data={dataSale}
-            isSale={true}
+            isShop={false}
             insertKeranjang={insertKeranjang}
           />
         }

@@ -30,8 +30,8 @@ export default function Navbar() {
                 <div className={isNavOpen ? "menu active" : "menu"}>
                     <Link to="/">Home</Link>
                     <Link to="/sale">Sale</Link>
-                    <a href="#">Shop</a>
-                    <a href="#">About Us</a>
+                    <Link to="/shop">Shop</Link>
+                    <Link to="/about-us">About Us</Link>
                 </div>
             </div>
         </div>

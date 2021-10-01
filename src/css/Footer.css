@@ -38,6 +38,10 @@ footer {
   color: black;
 }
 
+.sub-menu a:hover {
+  text-decoration: underline;
+}
+
 .sub-menu a:active {
   color: black;
 }

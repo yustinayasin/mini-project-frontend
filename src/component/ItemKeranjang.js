@@ -6,27 +6,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsKemejaKeranjangOpen, setIsModalSizeOpen, setIsKeranjangEdit, setKeranjangEdit } from '../app/keranjangSlice';
 import ModalSize from '../component/ModalSize';
 
-export default function ItemKeranjang({item, setTotalPrice, totalPrice, deleteKeranjang, editKeranjang}) {
+export default function ItemKeranjang({item, deleteKeranjang, editKeranjang}) {
     const dispatch = useDispatch();
     const [jumlah, setJumlah] = useState(item.jumlah);
 
-    useEffect(() => {
-        if(item) {
-            setTotalPrice(totalPrice+(item.kemeja.harga*item.jumlah));
-        } else {
-            setTotalPrice(0);
-        }
-    }, [item]);
+    // useEffect(() => {
+    //     console.log("aa");
+    //     if(item) {
+    //         setTotalPrice(totalPrice+(item.kemeja.harga*item.jumlah));
+    //     } else {
+    //         setTotalPrice(0);
+    //     }
+    // }, [item]);
 
     const increaseJumlah = () => {
+        console.log("increase awal jml: "+jumlah);
         setJumlah(jumlah+1);
         editKeranjang({variables: {id: item.id, jumlah: jumlah, size: item.size}});
+        console.log("increase akhir jml: "+jumlah);
     }
 
     const decreaseJumlah = () => {
         if(jumlah!==0){
+            console.log("decrease awal jml: "+jumlah);
             setJumlah(jumlah-1)
             editKeranjang({variables: {id: item.id, jumlah: jumlah, size: item.size}});
+            console.log("decrease akhir jml: "+jumlah);
         }
     }
 
