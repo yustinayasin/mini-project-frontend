@@ -12,7 +12,7 @@ footer {
   width: 100%;
 }
 
-.about {
+footer .about {
   display: flex;
   flex-direction: column;
   justify-content: center;
