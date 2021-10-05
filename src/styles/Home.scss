@@ -1,0 +1,136 @@
+@import "mixins";
+@import "variables";
+
+.home {
+  @include display-flex();
+  position: relative;
+  height: 100%;
+
+  .welcome {
+    position: relative;
+    font-size: 1rem;
+
+    img {
+      width: 100%;
+    }
+
+    .tagline {
+      font-family: $font-family-headings;
+      color: $white;
+      position: absolute;
+      font-size: 1.5rem;
+      top: 30px;
+      left: 50px;
+    }
+    .description {
+      color: $white;
+      position: absolute;
+      font-size: 0.7rem;
+      top: 90px;
+      left: 70px;
+      margin: 0;
+    }
+    .explore {
+      position: absolute;
+      bottom: 50px;
+      left: 70px;
+      color: $white;
+      font-size: 0.8rem;
+      text-decoration: underline;
+    }
+    .scroll-down {
+      position: absolute;
+      @include display-flex(center, center, row);
+      font-size: 0.6rem;
+      transform: rotate(90deg);
+      color: $white;
+      bottom: 60px;
+      left: -30px;
+
+      .line {
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: $white;
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+  .latest-product {
+    margin: 40px 0 40px 0;
+    padding: 0 0 0 40px;
+    width: 100%;
+
+    p {
+      @include page-title();
+    }
+
+    span {
+      @include page-line();
+    }
+  }
+  .products {
+    @include display-grid(40px 0);
+
+    img {
+      width: 200px;
+    }
+  }
+}
+
+@include breakpoint(tablet) {
+  .home {
+    .latest-product {
+      margin-bottom: 50px;
+    }
+
+    .products {
+      @include display-grid(50px 70px, 1fr 1fr, auto, none);
+    }
+  }
+}
+
+@include breakpoint(laptop) {
+  .home {
+    .welcome {
+      .tagline {
+        font-size: 4.5rem;
+        top: 50px;
+        left: 80px;
+      }
+
+      .description {
+        font-size: 1.2rem;
+        top: 250px;
+        left: 180px;
+      }
+
+      .explore {
+        font-size: 1.3rem;
+        bottom: 200px;
+        left: 180px;
+      }
+
+      .scroll-down {
+        bottom: 300px;
+        font-size: 1rem;
+      }
+    }
+
+    .latest-product {
+      margin-bottom: 60px;
+
+      p {
+        font-size: 1.3rem;
+      }
+
+      span {
+        width: 170px;
+      }
+    }
+
+    .products {
+      @include display-grid(80px 80px, 1fr 1fr 1fr, auto, none);
+    }
+  }
+}

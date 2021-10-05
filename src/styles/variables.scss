@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap");
+
+//colors
+$light-gray-bg-body: #fafafa;
+$light-tosca: #c4d9d5;
+$semi-medium-gray: #6b6767;
+$white: rgb(255, 255, 255);
+$black: rgb(0, 0, 0);
+$medium-gray: #343434;
+$broken-white: #f1f1f1;
+$bold-tosca: #365953;
+$light-gray-line-details: #c4c4c4;
+
+//typography
+$font-family-body: "Prompt", sans-serif;
+$font-family-logo: "Love";
+$font-family-headings: "NewYork";
+
+//breakpoints media query
+$breakpoint-phone: 376px;
+$breakpoint-tablet: 641px;
+$breakpoint-laptop: 1025px;

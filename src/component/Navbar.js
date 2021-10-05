@@ -1,6 +1,6 @@
 import { FaShoppingBag, FaBars } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
-import '../css/Navbar.css';
+import '../styles/Navbar.scss';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsKemejaKeranjangOpen } from '../app/keranjangSlice';

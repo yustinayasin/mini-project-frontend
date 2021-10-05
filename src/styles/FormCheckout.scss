@@ -1,0 +1,81 @@
+@import "mixins";
+@import "variables";
+
+.form-checkout-wrapper {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 40px 25px 40px 20px;
+  top: 0;
+  left: 0;
+  display: none;
+  transition: 1s ease;
+  min-height: 100vh;
+  z-index: 1;
+  width: 100%;
+
+  form {
+    border-radius: 10px;
+    width: 300px;
+    background-color: white;
+    padding: 60px 30px 30px 30px;
+    position: relative;
+    font-family: "Prompt", sans-serif;
+
+    .btn-back {
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      border-radius: 30px;
+      @include display-flex();
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+
+      &:hover {
+        background-color: #dfdede;
+      }
+    }
+
+    .form-title {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      outline: none;
+      height: 30px;
+      width: 100%;
+      padding: 10px;
+    }
+
+    textarea {
+      outline: none;
+      width: 100%;
+      padding: 10px;
+    }
+
+    .btn-continue {
+      width: 100%;
+      border-radius: 5px;
+      padding: 10px 0;
+      background-color: #343434;
+      border: 1px solid #343434;
+      color: white;
+      position: relative;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+  }
+
+  &.active {
+    @include display-flex();
+  }
+}

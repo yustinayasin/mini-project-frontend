@@ -1,0 +1,6 @@
+@import "mixins";
+
+.details {
+  @include display-flex();
+  position: relative;
+}

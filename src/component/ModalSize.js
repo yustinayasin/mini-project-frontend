@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsModalSizeOpen, setIsModalQuantityOpen, setIsKeranjangEdit } from '../app/keranjangSlice';
 import { FaArrowLeft } from "react-icons/fa";
 // import { CgClose } from "react-icons/cg";
-import '../css/ModalSize.css';
+import '../styles/ModalSize.scss';
 import ModalQuantity from '../component/ModalQuantity';
 import { useState, useEffect } from 'react';
 

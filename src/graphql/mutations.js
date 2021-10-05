@@ -29,3 +29,20 @@ mutation MyMutation($id: Int!, $jumlah: Int!, $size: String!) {
   }
 }
 `;
+
+export const insertPembelian = gql`
+mutation MyMutation($total_harga: numeric!, $payment: String!, $nomor_telepon: String!, $nama_panjang: String!, $kode_pos: String! $jalan: String!, $email: String!, $ekspedisi: String!, $alamat: String!) {
+  insert_pembelian_one(object: {alamat: $alamat, ekspedisi: $ekspedisi, email: $email, jalan: $jalan, kode_pos: $kode_pos, nama_panjang: $nama_panjang, nomor_telepon: $nomor_telepon, payment: $payment, total_harga: $total_harga}) {
+    id
+    nama_panjang
+    email
+    nomor_telepon
+    jalan
+    alamat
+    kode_pos
+    ekspedisi
+    payment
+    total_harga
+  }
+}
+`;

@@ -1,7 +1,7 @@
 import Navbar from '../component/Navbar';
 import ProductCard from '../component/ProductCard';
 import Footer from '../component/Footer';
-import '../css/Sale.css';
+import '../styles/Sale.scss';
 import { Link } from "react-router-dom";
 import useGetSale from '../hooks/useGetSale';
 import { useEffect } from 'react';
@@ -27,7 +27,7 @@ function Sale() {
         <p>Sale Products</p>
         <span className="sale-line"></span>
       </div>
-      <div className="products">
+      <div className="sale-products">
         {
           loadingSale ? "Loading..." :
           <ProductCard

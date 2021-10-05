@@ -1,7 +1,7 @@
 import Navbar from '../component/Navbar';
 import ProductCard from '../component/ProductCard';
 import Footer from '../component/Footer';
-import '../css/Sale.css';
+import '../styles/Sale.scss';
 import useSubscribeKemeja from '../hooks/useSubscribeKemeja';
 import { useEffect, useState } from 'react';
 import ModalKeranjang from '../component/ModalKeranjang';

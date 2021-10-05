@@ -1,0 +1,62 @@
+@import "mixins";
+@import "variables";
+
+footer {
+  background-color: $light-tosca;
+  font-size: 0.8rem;
+  margin-top: 50px;
+  padding: 60px 20px 60px 20px;
+  @include display-grid(30px 0, auto, auto, "about" "sub-menu" "sosmed");
+  position: relative;
+  width: 100%;
+
+  .about-footer {
+    @include display-flex(center, flex-start, column);
+
+    .brand-name {
+      margin: 0;
+      font-size: 1rem;
+      font-family: $font-family-logo;
+    }
+
+    .address {
+      margin: 10px 0;
+    }
+  }
+
+  .sub-menu {
+    list-style: none;
+
+    li {
+      a {
+        font-family: $font-family-body;
+        text-decoration: none;
+        color: $black;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &:active {
+          color: $black;
+        }
+      }
+    }
+  }
+
+  .social-media {
+    font-size: 1.3rem;
+
+    .sosmed {
+      .twitter {
+        margin: 0 5px;
+      }
+    }
+  }
+  .copyright {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+}

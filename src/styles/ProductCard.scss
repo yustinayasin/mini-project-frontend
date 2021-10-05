@@ -1,0 +1,37 @@
+@import "mixins";
+@import "variables";
+
+.product-card {
+  @include display-grid(10px 0, 200px, auto, "desc" "button");
+  font-family: "Prompt", sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+
+  a {
+    @include display-grid(10px 0, 200px, auto, "img" "price" "name");
+    grid-area: desc;
+
+    img {
+      grid-area: img;
+      width: 100%;
+      height: 280px;
+    }
+
+    .harga {
+      grid-area: price;
+    }
+
+    .product-name {
+      font-size: 0.8rem;
+      font-weight: 400;
+      grid-area: name;
+    }
+  }
+
+  button {
+    grid-area: button;
+    width: auto;
+    justify-self: center;
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,105 @@
+@import "mixins";
+@import "variables";
+
+.item-keranjang {
+  @include display-flex();
+
+  .item {
+    width: 100%;
+    @include display-grid(
+      20px 10px,
+      1fr 4fr,
+      auto,
+      "photo description" "action action"
+    );
+
+    img {
+      grid-area: photo;
+      width: 80px;
+    }
+    .item-details {
+      grid-area: description;
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      gap: 5px 0;
+
+      span {
+        display: block;
+      }
+
+      .stock {
+        padding: 0 5px;
+        justify-self: start;
+        font-size: 0.8rem;
+        color: $white;
+        background-color: $medium-gray;
+      }
+
+      .btn-size {
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        border: none;
+        background-color: $medium-gray;
+        color: $white;
+        cursor: pointer;
+      }
+    }
+
+    .action {
+      grid-area: action;
+      @include display-grid(10px, auto, auto, "edit delete");
+      justify-content: center;
+      align-items: center;
+
+      .input-quantity {
+        grid-area: edit;
+        width: 100px;
+        background-color: transparent;
+        border: 1px solid $black;
+        padding: 5px 10px;
+        border-radius: 5px;
+        @include display-grid(0 10px, auto, auto, "decrease input increase");
+
+        .btn-decrease,
+        .btn-increase {
+          background-color: transparent;
+          border: none;
+          font-size: 1.3rem;
+          font-weight: 400;
+          cursor: pointer;
+        }
+        .number {
+          text-align: center;
+        }
+      }
+      .btn-delete {
+        background-color: transparent;
+        border: none;
+        grid-area: delete;
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        cursor: pointer;
+
+        svg {
+          font-size: 1rem;
+        }
+
+        &:hover {
+          background-color: $medium-gray;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: $light-gray-line-details;
+    margin: 15px 0 0 0;
+  }
+}

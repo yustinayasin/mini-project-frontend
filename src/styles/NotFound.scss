@@ -1,0 +1,31 @@
+@import "mixins";
+@import "variables";
+
+.notFound {
+  @include display-flex();
+  height: 100vh;
+
+  img {
+    width: 300px;
+  }
+  h2 {
+    margin: 20px 0 30px 0;
+    color: $bold-tosca;
+  }
+  a {
+    button {
+      background-color: $bold-tosca;
+      color: $white;
+      font-size: 1.5rem;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 3px solid $bold-tosca;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $white;
+        color: $bold-tosca;
+      }
+    }
+  }
+}

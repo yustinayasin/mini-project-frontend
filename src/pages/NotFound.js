@@ -1,6 +1,6 @@
 import alien from '../images/alien.png';
 import { Link } from "react-router-dom";
-import '../css/NotFound.css';
+import '../styles/NotFound.scss';
 
 const NotFound = () => {
     return (

@@ -1,5 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
-import '../css/ItemKeranjang.css';
+import '../styles/ItemKeranjang.scss';
 import photoProduct from '../photoproducts';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,30 +8,15 @@ import ModalSize from '../component/ModalSize';
 
 export default function ItemKeranjang({item, deleteKeranjang, editKeranjang}) {
     const dispatch = useDispatch();
-    const [jumlah, setJumlah] = useState(item.jumlah);
 
-    // useEffect(() => {
-    //     console.log("aa");
-    //     if(item) {
-    //         setTotalPrice(totalPrice+(item.kemeja.harga*item.jumlah));
-    //     } else {
-    //         setTotalPrice(0);
-    //     }
-    // }, [item]);
 
     const increaseJumlah = () => {
-        console.log("increase awal jml: "+jumlah);
-        setJumlah(jumlah+1);
-        editKeranjang({variables: {id: item.id, jumlah: jumlah, size: item.size}});
-        console.log("increase akhir jml: "+jumlah);
+        editKeranjang({variables: {id: item.id, jumlah: item.jumlah+1, size: item.size}});
     }
 
     const decreaseJumlah = () => {
-        if(jumlah!==0){
-            console.log("decrease awal jml: "+jumlah);
-            setJumlah(jumlah-1)
-            editKeranjang({variables: {id: item.id, jumlah: jumlah, size: item.size}});
-            console.log("decrease akhir jml: "+jumlah);
+        if(item.jumlah!==0){
+            editKeranjang({variables: {id: item.id, jumlah: item.jumlah-1, size: item.size}});
         }
     }
 

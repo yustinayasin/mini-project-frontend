@@ -67,7 +67,7 @@ ReactDOM.render(
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/sale" exact component={Sale} />
-            <Route path="/details" exact component={Details} />
+            <Route path="/details/:id" exact component={Details} />
             <Route path="/shop" exact component={Shop} />
             <Route path="/about-us" exact component={AboutUs} />
             <Route component={NotFound} />

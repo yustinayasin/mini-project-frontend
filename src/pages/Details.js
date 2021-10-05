@@ -1,7 +1,7 @@
 import DetailCard from '../component/DetailCard';
 import Navbar from '../component/Navbar';
 import Footer from '../component/Footer';
-import '../css/Details.css';
+import '../styles/Details.scss';
 import { useLocation } from "react-router-dom";
 import useDeleteKeranjang from '../hooks/useDeleteKeranjang';
 import useInsertKeranjang from '../hooks/useAddKeranjang';

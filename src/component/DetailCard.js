@@ -1,5 +1,5 @@
 import { FaCheck }  from "react-icons/fa";
-import '../css/DetailCard.css';
+import '../styles/DetailCard.scss';
 import photoProduct from '../photoproducts';
 import { useDispatch } from 'react-redux';
 import { setIsModalSizeOpen } from '../app/keranjangSlice';

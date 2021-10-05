@@ -1,0 +1,78 @@
+@import "mixins";
+@import "variables";
+
+.modal-size-wrapper {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 60px 25px 50px 20px;
+  top: 0;
+  left: 0;
+  display: none;
+  transition: 1s ease;
+  min-height: 100vh;
+  z-index: 1;
+  width: 100%;
+
+  .modal-size {
+    border-radius: 10px;
+    width: 300px;
+    background-color: $white;
+    padding: 60px 30px 30px 30px;
+    @include display-grid(10px 0, auto, auto, "pick" "s" "m" "l");
+    position: relative;
+    font-family: "Prompt", sans-serif;
+
+    .btn-back {
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      border-radius: 30px;
+      @include display-flex();
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+
+      &:hover {
+        background-color: #dfdede;
+      }
+    }
+
+    .modal-title {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .btn-size {
+      width: 100%;
+      padding: 2px 0;
+      @include display-flex();
+      background-color: transparent;
+      border: 1px solid $semi-medium-gray;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+
+      &:hover {
+        background-color: $broken-white;
+      }
+
+      input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+
+      span {
+        display: block;
+      }
+    }
+  }
+  &.active {
+    @include display-flex();
+  }
+}

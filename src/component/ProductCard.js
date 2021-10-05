@@ -1,4 +1,4 @@
-import '../css/ProductCard.css';
+import '../styles/ProductCard.scss';
 import photoProduct from '../photoproducts';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsModalSizeOpen } from '../app/keranjangSlice';
@@ -47,7 +47,7 @@ export default function ProductCard ({data, isShop}) {
                     <div className="product-card" key={item.id}>
                         <Link 
                             to={{
-                            pathname: "/details",
+                            pathname: `/details/${item.id}`,
                             item: item
                             }}
                         > 

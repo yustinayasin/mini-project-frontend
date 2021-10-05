@@ -9,7 +9,7 @@ import useSubscribeKeranjang from '../hooks/useSubscribeKeranjang';
 import ModalSize from '../component/ModalSize';
 import Navbar from '../component/Navbar';
 import Footer from '../component/Footer';
-import '../css/AboutUs.css';
+import '../styles/AboutUs.scss';
 
 export default function AboutUs() {
     const {dataKeranjang, loadingKeranjang} = useSubscribeKeranjang();

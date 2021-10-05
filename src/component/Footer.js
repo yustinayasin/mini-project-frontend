@@ -1,11 +1,11 @@
 import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from "react-icons/fa";
-import '../css/Footer.css';
+import '../styles/Footer.scss';
 import { Link } from "react-router-dom";
 
 export default function footer() {
     return(
         <footer>
-            <div className="about">
+            <div className="about-footer">
                 <h3 className="brand-name">Kemejaku</h3>
                 <p className="address">
                     Jalan Ikhlas No 14, Kecamatan Magelang

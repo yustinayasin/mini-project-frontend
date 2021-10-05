@@ -1,0 +1,88 @@
+@import "mixins";
+@import "variables";
+
+.modal-keranjang-wrapper {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 50px 25px 50px 20px;
+  top: 0;
+  left: 0;
+  display: none;
+  transition: 1s ease;
+  min-height: 100vh;
+  z-index: 1;
+  width: 100%;
+
+  .modal-keranjang {
+    border-radius: 10px;
+    @include display-flex();
+    background-color: white;
+    padding: 30px 30px;
+    width: 300px;
+
+    .title-wrapper {
+      @include display-flex($align: flex-start, $direction: row);
+      align-self: flex-start;
+      margin-bottom: 20px;
+
+      svg {
+        font-size: 1.5rem;
+      }
+
+      span {
+        margin-left: 5px;
+      }
+    }
+
+    .items-wrapper {
+      @include display-grid(20px, auto, auto, none);
+      width: 100%;
+      max-height: 300px;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    }
+
+    .total-price {
+      width: 100%;
+      @include display-flex(space-between, center, row);
+      margin-top: 10px;
+    }
+
+    .btn-continue,
+    .btn-order {
+      width: 100%;
+      border-radius: 5px;
+      padding: 10px 0;
+    }
+
+    .btn-continue {
+      background-color: transparent;
+      border: 1px solid black;
+      margin: 30px 0 10px 0;
+    }
+
+    .btn-order {
+      background-color: #343434;
+      border: 1px solid #343434;
+      color: white;
+      position: relative;
+
+      svg {
+        position: absolute;
+        right: 30px;
+        font-size: 1.3rem;
+        top: 6px;
+      }
+    }
+  }
+
+  &.active {
+    @include display-flex();
+  }
+}

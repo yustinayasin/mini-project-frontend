@@ -1,0 +1,84 @@
+@import "mixins";
+@import "variables";
+
+.delivery {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 60px 25px 50px 20px;
+  top: 0;
+  left: 0;
+  display: none;
+  transition: 1s ease;
+  min-height: 100vh;
+  z-index: 1;
+  width: 100%;
+
+  @at-root #{&}__wrapper {
+    border-radius: 10px;
+    width: 300px;
+    background-color: white;
+    padding: 60px 30px 30px 30px;
+    position: relative;
+    font-family: "Prompt", sans-serif;
+  }
+
+  @at-root #{&}__back {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border-radius: 30px;
+    @include display-flex();
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    &:hover {
+      background-color: #dfdede;
+    }
+  }
+
+  @at-root #{&}__title {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+
+  .information {
+    margin: 15px 0 20px 0;
+
+    @at-root #{&}__name {
+      font-weight: 500;
+    }
+    @at-root #{&}__address {
+    }
+    @at-root #{&}__phone {
+    }
+    @at-root #{&}__email {
+    }
+  }
+
+  @at-root #{&}__btn {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+
+  @at-root #{&}__change {
+    background-color: transparent;
+    border: 1px solid black;
+    margin: 0 0 10px 0;
+  }
+
+  @at-root #{&}__continue {
+    background-color: #343434;
+    border: 1px solid #343434;
+    color: white;
+    position: relative;
+  }
+
+  &.active {
+    @include display-flex();
+  }
+}

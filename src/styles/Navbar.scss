@@ -1,0 +1,73 @@
+@import "mixins";
+@import "variables";
+
+.navbar {
+  width: 100%;
+  padding: 20px 30px 40px 20px;
+  @include display-flex();
+  position: relative;
+
+  .brand-name {
+    font-family: $font-family-logo;
+    margin-bottom: 30px;
+  }
+
+  .menu-wrapper {
+    @include display-flex();
+    width: 100%;
+
+    .button-wrapper {
+      width: 100%;
+      @include display-flex(space-between, center, row);
+
+      .menu-bars {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        .menu-bars-icon {
+          font-size: 1.5rem;
+        }
+      }
+
+      .shopping-bag {
+        cursor: pointer;
+        background-color: $black;
+        border: none;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+
+        .shopping-icon {
+          color: $white;
+          z-index: 2;
+          font-size: 0.8rem;
+        }
+      }
+    }
+    .menu {
+      padding: 20px 0;
+      width: 100%;
+      transform: translateY(-100%);
+      position: absolute;
+      @include display-flex();
+
+      a {
+        text-align: center;
+        font-size: 1.1rem;
+        padding: 10px 0;
+        width: 100%;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $light-gray-line-details;
+        }
+      }
+
+      &.active {
+        transform: translateY(0);
+        position: static;
+      }
+    }
+  }
+}

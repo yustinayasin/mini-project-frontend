@@ -2,7 +2,7 @@ import Navbar from '../component/Navbar';
 import ProductCard from '../component/ProductCard';
 import Footer from '../component/Footer';
 import welcome from '../images/welcome.jpg';
-import '../css/Home.css';
+import '../styles/Home.scss';
 import { Link } from "react-router-dom";
 import useSubscribeKemeja from '../hooks/useSubscribeKemeja';
 import { useState, useEffect } from 'react';

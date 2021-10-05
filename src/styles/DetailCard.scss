@@ -1,0 +1,84 @@
+@import "mixins";
+@import "variables";
+
+.detail-card {
+  @include display-flex(center, flex-start, column);
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+
+  .details {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 20px;
+    @include display-grid(10px 0, auto, auto, none);
+    justify-content: center;
+    justify-items: start;
+    align-items: start;
+
+    .product-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .product-price {
+    }
+    .stock-info {
+    }
+    .description {
+      margin: 10px 0;
+
+      li {
+        font-size: 0.9rem;
+      }
+    }
+    .size-quantity {
+      @include display-grid(
+        10px 0,
+        auto,
+        1fr 1fr,
+        "size size-chart" "quantity quantity-input"
+      );
+
+      .size {
+        grid-area: size;
+        align-self: center;
+      }
+      .size-chart {
+        grid-area: size-chart;
+        width: 100px;
+
+        div {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid $semi-medium-gray;
+          background-color: $semi-medium-gray;
+          width: 25px;
+          height: 25px;
+          border-radius: 30px;
+          color: $white;
+          position: relative;
+
+          &:nth-of-type(2) {
+            margin: 0 5px;
+          }
+        }
+      }
+      .quantity {
+        width: 150px;
+        grid-area: quantity;
+        align-self: center;
+      }
+      .total {
+        grid-area: quantity-input;
+      }
+    }
+    button {
+      justify-self: stretch;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+  }
+}
