@@ -3,7 +3,7 @@
 
 .navbar {
   width: 100%;
-  padding: 20px 30px 40px 20px;
+  padding: 20px 30px 40px 30px;
   @include display-flex();
   position: relative;
 
@@ -45,6 +45,7 @@
         }
       }
     }
+
     .menu {
       padding: 20px 0;
       width: 100%;
@@ -67,6 +68,75 @@
       &.active {
         transform: translateY(0);
         position: static;
+      }
+    }
+  }
+}
+
+@include breakpoint(tablet) {
+  .navbar {
+    padding: 20px 30px 40px 30px;
+
+    .menu-wrapper {
+      .button-wrapper {
+        .menu-bars {
+          .menu-bars-icon {
+            font-size: 1.9rem;
+          }
+        }
+
+        .shopping-bag {
+          width: 40px;
+          height: 40px;
+
+          .shopping-icon {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include breakpoint(laptop) {
+  .navbar {
+    .brand-name {
+      font-size: 2.5rem;
+    }
+
+    .menu-wrapper {
+      position: relative;
+
+      .button-wrapper {
+        position: absolute;
+        right: 30px;
+        top: 0;
+        width: auto;
+
+        .menu-bars {
+          display: none;
+        }
+
+        .shopping-bag {
+          width: 40px;
+          height: 40px;
+
+          .shopping-icon {
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .menu {
+        padding: 0;
+        width: auto;
+        transform: none;
+        position: static;
+        @include display-flex(center, center, row);
+
+        a {
+          width: 130px;
+        }
       }
     }
   }

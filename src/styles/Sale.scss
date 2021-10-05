@@ -7,9 +7,9 @@
   height: 100%;
 
   .sale-product {
-    margin: 10px 0 20px 0;
-    position: relative;
-    right: 80px;
+    margin: 40px 0 40px 0;
+    @include display-flex();
+    width: 100%;
 
     p {
       @include page-title();
@@ -21,5 +21,37 @@
 
   .sale-products {
     @include display-grid(40px 0, auto, auto, none);
+  }
+}
+
+@include breakpoint(tablet) {
+  .sale {
+    .sale-product {
+      margin-bottom: 50px;
+    }
+
+    .sale-products {
+      @include display-grid(50px 70px, 1fr 1fr, auto, none);
+    }
+  }
+}
+
+@include breakpoint(laptop) {
+  .sale {
+    .sale-product {
+      margin-bottom: 60px;
+
+      p {
+        font-size: 1.3rem;
+      }
+
+      span {
+        width: 170px;
+      }
+    }
+
+    .sale-products {
+      @include display-grid(80px 80px, 1fr 1fr 1fr, auto, none);
+    }
   }
 }

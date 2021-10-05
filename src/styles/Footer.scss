@@ -48,6 +48,8 @@ footer {
     font-size: 1.3rem;
 
     .sosmed {
+      cursor: pointer;
+
       .twitter {
         margin: 0 5px;
       }
@@ -58,5 +60,30 @@ footer {
     bottom: 10px;
     width: 100%;
     text-align: center;
+  }
+}
+
+@include breakpoint(tablet) {
+  footer {
+    margin-top: 70px;
+    padding: 60px 40px;
+    @include display-grid(30px, 1fr 1fr 1fr, auto, "about sub-menu sosmed");
+  }
+}
+
+@include breakpoint(laptop) {
+  footer {
+    margin-top: 90px;
+    padding: 60px 100px 100px 40px;
+
+    .social-media {
+      font-size: 1.5rem;
+
+      .sosmed {
+        .twitter {
+          margin: 0 8px;
+        }
+      }
+    }
   }
 }

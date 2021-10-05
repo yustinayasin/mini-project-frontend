@@ -33,7 +33,7 @@ function Sale() {
     return (
         <div className="sale">
         <Navbar/>
-        <div className="products">
+        <div className="sale-products">
             {
             loading ? "Loading..." :
             <ProductCard

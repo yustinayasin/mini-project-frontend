@@ -86,3 +86,11 @@
     @include display-flex();
   }
 }
+
+@include breakpoint(tablet) {
+  .modal-keranjang-wrapper {
+    .modal-keranjang {
+      width: 450px;
+    }
+  }
+}

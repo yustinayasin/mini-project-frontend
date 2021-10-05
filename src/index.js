@@ -6,6 +6,7 @@ import Details from './pages/Details';
 import Sale from './pages/Sale';
 import Shop from './pages/Shop';
 import AboutUs from './pages/AboutUs';
+import ConfirmCheckout from './pages/ConfirmCheckout';
 import NotFound from './pages/NotFound';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, withRouter, Route, Switch } from "react-router-dom";
@@ -70,6 +71,7 @@ ReactDOM.render(
             <Route path="/details/:id" exact component={Details} />
             <Route path="/shop" exact component={Shop} />
             <Route path="/about-us" exact component={AboutUs} />
+            <Route path="/confirm-checkout" exact component={ConfirmCheckout} />
             <Route component={NotFound} />
           </Switch>
         </Router>

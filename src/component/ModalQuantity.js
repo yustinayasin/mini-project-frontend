@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 export default function ModalSize({size, insertKeranjang}) {
     const isModalQuantityOpen = useSelector((state) => state.keranjangRed.isModalQuantityOpen);
-    const isModalSizeOpen = useSelector((state) => state.keranjangRed.isModalSizeOpen);
     const item = useSelector((state) => state.itemRed.item);
     const dispatch = useDispatch();
 

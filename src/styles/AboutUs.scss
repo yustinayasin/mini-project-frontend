@@ -7,16 +7,7 @@
 
   .about {
     width: 100%;
-    padding: 0 30px;
-
-    .about-title {
-      p {
-        @include page-title();
-      }
-      .about-line {
-        @include page-line();
-      }
-    }
+    padding: 0 15vw;
 
     .image-wrapper {
       @include display-grid(
@@ -30,6 +21,7 @@
       .about-1 {
         grid-area: about-1;
         width: 100%;
+        align-self: stretch;
       }
 
       .about-2 {
@@ -47,6 +39,42 @@
 
     .about-description {
       font-size: 0.8rem;
+    }
+  }
+}
+
+@include breakpoint(tablet) {
+  .about-us {
+    .about {
+      @include display-grid(30px 20px, 6fr 4fr, auto, "title title" "img desc");
+
+      .image-wrapper {
+        grid-area: img;
+        margin: 0;
+      }
+
+      .about-description {
+        font-size: 0.9rem;
+        grid-area: desc;
+      }
+    }
+  }
+}
+
+@include breakpoint(laptop) {
+  .about-us {
+    .about {
+      @include display-grid(50px 50px, 6fr 4fr, auto, "title title" "img desc");
+
+      .image-wrapper {
+        grid-area: img;
+        margin: 0;
+      }
+
+      .about-description {
+        font-size: 1rem;
+        grid-area: desc;
+      }
     }
   }
 }

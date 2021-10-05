@@ -37,16 +37,19 @@ function Home() {
       <Navbar/>
       <div className="welcome">
         <img src={welcome} alt="welcome"/>
-        <h1 className="tagline">From Personal <br/> To Professional</h1>
-        <p className="description">
-            We provide the best quality products <br/>
-          with premium material. From some basic <br/>
-          color to some unique pattern. Our <br/>
-          products are suitable for personal or <br/>
-          formal activities. What you need is all <br/>
-          here.
-        </p>
-        <Link to="/shop" className="explore">Explore Product</Link>
+        <div className="absolute">
+          <h1 className="tagline">From Personal <br/> To Professional</h1>
+          <p className="description">
+              We provide the best quality products <br/>
+            with premium material. From some basic <br/>
+            color to some unique pattern. Our <br/>
+            products are suitable for personal or <br/>
+            formal activities. What you need is all <br/>
+            here.
+          </p>
+          <Link to="/shop" className="explore">Explore Product</Link>
+
+        </div>
         <div className="scroll-down">
           <span className="line"></span>
           <span>scroll down</span>

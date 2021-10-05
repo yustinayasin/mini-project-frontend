@@ -14,51 +14,58 @@
       width: 100%;
     }
 
-    .tagline {
-      font-family: $font-family-headings;
-      color: $white;
+    .absolute {
       position: absolute;
-      font-size: 1.5rem;
-      top: 30px;
-      left: 50px;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding: 10vw 13vw;
+      @include display-grid(7px 0, auto, auto, "tagline" "desc" "explore");
+
+      .tagline {
+        font-family: $font-family-headings;
+        color: $white;
+        // font-size: 1.5rem;
+        font-size: 6vw;
+      }
+      .description {
+        color: $white;
+        // font-size: 0.7rem;
+        font-size: 2.7vw;
+        margin-left: 10vw;
+      }
+      .explore {
+        color: $white;
+        // font-size: 0.75rem;
+        font-size: 2.75vw;
+        margin-left: 10vw;
+        text-decoration: underline;
+      }
     }
-    .description {
-      color: $white;
-      position: absolute;
-      font-size: 0.7rem;
-      top: 90px;
-      left: 70px;
-      margin: 0;
-    }
-    .explore {
-      position: absolute;
-      bottom: 50px;
-      left: 70px;
-      color: $white;
-      font-size: 0.8rem;
-      text-decoration: underline;
-    }
+
     .scroll-down {
       position: absolute;
       @include display-flex(center, center, row);
-      font-size: 0.6rem;
+      font-size: 2vw;
       transform: rotate(90deg);
       color: $white;
-      bottom: 60px;
+      top: 200px;
       left: -30px;
 
       .line {
         display: block;
         width: 30px;
-        height: 2px;
+        height: 0.5vw;
         background-color: $white;
         margin: 0 10px 0 0;
       }
     }
   }
+
   .latest-product {
     margin: 40px 0 40px 0;
-    padding: 0 0 0 40px;
+    @include display-flex();
     width: 100%;
 
     p {
@@ -84,6 +91,33 @@
       margin-bottom: 50px;
     }
 
+    .welcome {
+      .absolute {
+        padding: 12vw 15vw;
+
+        .tagline {
+          font-size: 6vw;
+        }
+
+        .description {
+          font-size: 1.1rem;
+        }
+
+        .explore {
+          font-size: 1.2rem;
+        }
+      }
+
+      .scroll-down {
+        font-size: 1rem;
+
+        .line {
+          width: 30px;
+          height: 3px;
+        }
+      }
+    }
+
     .products {
       @include display-grid(50px 70px, 1fr 1fr, auto, none);
     }
@@ -93,27 +127,23 @@
 @include breakpoint(laptop) {
   .home {
     .welcome {
-      .tagline {
-        font-size: 4.5rem;
-        top: 50px;
-        left: 80px;
-      }
+      .absolute {
+        padding: 15vw 19vw;
 
-      .description {
-        font-size: 1.2rem;
-        top: 250px;
-        left: 180px;
-      }
+        .tagline {
+          font-size: 6vw;
+        }
 
-      .explore {
-        font-size: 1.3rem;
-        bottom: 200px;
-        left: 180px;
-      }
+        .description {
+          font-size: 1.5vw;
+        }
 
-      .scroll-down {
-        bottom: 300px;
-        font-size: 1rem;
+        .explore {
+          font-size: 1.8vw;
+        }
+
+        .scroll-down {
+        }
       }
     }
 

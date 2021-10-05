@@ -79,3 +79,11 @@
     @include display-flex();
   }
 }
+
+@include breakpoint(tablet) {
+  .form-checkout-wrapper {
+    form {
+      width: 400px;
+    }
+  }
+}

@@ -1,15 +1,12 @@
 import '../styles/ProductCard.scss';
 import photoProduct from '../photoproducts';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setIsModalSizeOpen } from '../app/keranjangSlice';
 import { setItem } from '../app/itemSlice';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 export default function ProductCard ({data, isShop}) {
-    const isModalSizeOpen = useSelector((state) => state.keranjangRed.isModalSizeOpen);
-    const isModalQuantityOpen = useSelector((state) => state.keranjangRed.isModalQuantityOpen);
-    const item = useSelector((state) => state.itemRed.item);
     const dispatch = useDispatch();
     const [data2, setData2] = useState([]);
     const [isSale, setIsSale] = useState(false);
@@ -34,10 +31,6 @@ export default function ProductCard ({data, isShop}) {
         dispatch(setItem({item: item}));
         dispatch(setIsModalSizeOpen({modalsize: true}));
     }
-
-    // const convertHarga = (harga) => {
-        
-    // }
 
     return(
         <>

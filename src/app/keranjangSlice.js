@@ -4,7 +4,7 @@ const initialState = {
   isModalKeranjangOpen: false,
   isModalSizeOpen: false,
   isModalQuantityOpen: false,
-  isModalDeliveryOpen: false,
+  isModalConfirmOpen: false,
   isFormCheckoutOpen: false,
   isModalEkspedisiOpen: false,
   isModalPaymentOpen: false,
@@ -37,10 +37,10 @@ const keranjangReducer = createSlice({
         ...state, 
         isModalQuantityOpen: action.payload.modalquantity};
     },
-    setIsModalDeliveryOpen: (state, action) => {
+    setIsModalConfirmOpen: (state, action) => {
       return {
         ...state, 
-        isModalDeliveryOpen: action.payload.modaldelivery};
+        isModalConfirmOpen: action.payload.modalconfirm};
     },
     setIsFormCheckoutOpen: (state, action) => {
       return {
@@ -53,7 +53,6 @@ const keranjangReducer = createSlice({
         isModalEkspedisiOpen: action.payload.modalekspedisi};
     },
     setIsModalPaymentOpen: (state, action) => {
-      console.log('masuk');
       return {
         ...state, 
         isModalPaymentOpen: action.payload.modalpayment};
@@ -80,6 +79,6 @@ const keranjangReducer = createSlice({
 })
 
 
-export const { setIsKemejaKeranjangOpen, setIsModalEkspedisiOpen, setIsModalPaymentOpen, setIsModalSizeOpen, setIsModalQuantityOpen, setIsModalDeliveryOpen, setIsFormCheckoutOpen, setKeranjangEdit, setIsKeranjangEdit } = keranjangReducer.actions
+export const { setIsKemejaKeranjangOpen, setIsModalEkspedisiOpen, setIsModalPaymentOpen, setIsModalSizeOpen, setIsModalQuantityOpen, setIsModalConfirmOpen, setIsFormCheckoutOpen, setKeranjangEdit, setIsKeranjangEdit } = keranjangReducer.actions
 
 export default keranjangReducer.reducer

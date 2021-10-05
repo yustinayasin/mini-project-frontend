@@ -1,23 +1,22 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { setIsKemejaKeranjangOpen, setIsModalDeliveryOpen } from '../app/keranjangSlice';
+import { setIsFormCheckoutOpen, setIsModalConfirmOpen } from '../app/keranjangSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import '../styles/ModalDelivery.scss';
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import '../styles/ModalConfirm.scss';
 
-export default function ModalDelivery() {
-    const data = useLocation();
-    const isModalDeliveryOpen = useSelector((state) => state.keranjangRed.isModalDeliveryOpen);
+export default function ModalDelivery({data, totalPrice, ekspedisi, payment}) {
+    const isModalConfirmOpen = useSelector((state) => state.keranjangRed.isModalConfirmOpen);
     const dispatch = useDispatch();
 
     const handleBack = () => {
-        dispatch(setIsModalDeliveryOpen({modaldelivery: false}));
-        dispatch(setIsKemejaKeranjangOpen({modal: true}));
+        dispatch(setIsModalConfirmOpen({modalConfirm: false}));
+        dispatch(setIsFormCheckoutOpen({formCheckout: true}));
     } 
 
+    console.log(data);
+
     return(
-        <div className={isModalDeliveryOpen ? "delivery active" : "delivery"}>
-            <div className="delivery__wrapper">
+        <div className={isModalConfirmOpen ? "delivery active" : "delivery"}>
+            <div className="delivery__wrapper" onClick={handleBack}>
                 <button className="delivery__back" onClick={handleBack}>
                     <FaArrowLeft />
                 </button>
@@ -28,6 +27,9 @@ export default function ModalDelivery() {
                     <p className="information__address">{data.postalCode} {data.address}</p>
                     <p className="information__phone">{data.phone}</p>
                     <p className="information__email">{data.email}</p>
+                    <p className="information__email">Total price: Rp {totalPrice}</p>
+                    <p className="information__email">Ekspedisi: {ekspedisi}</p>
+                    <p className="information__email">Payment: {payment}</p>
                 </div>
                 <button className="delivery__btn delivery__change">Change Delivery Address</button>
                 <button className="delivery__btn delivery__continue">Continue</button>

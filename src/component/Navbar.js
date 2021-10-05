@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsKemejaKeranjangOpen } from '../app/keranjangSlice';
 import { setIsNavOpen } from '../app/navbarSlice';
-// import { useEffect } from 'react';
 
 export default function Navbar() {
     const isNavOpen = useSelector((state) => state.navbarRed.isNavOpen);

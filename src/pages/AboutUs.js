@@ -21,10 +21,6 @@ export default function AboutUs() {
         <div className="about-us">
             <Navbar/>
             <div className="about">
-                <div className="about-title">
-                    <p>About Us</p>
-                    <span className="about-line"></span>
-                </div>
                 <div className="image-wrapper">
                     <img src={about1} alt="about-1" className="about-1"/>
                     <img src={about2} alt="about-2" className="about-2"/>

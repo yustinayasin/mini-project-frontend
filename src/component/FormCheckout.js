@@ -1,39 +1,39 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsFormCheckoutOpen, setIsKemejaKeranjangOpen, setIsModalEkspedisiOpen } from '../app/keranjangSlice';
+import { setIsModalConfirmOpen, setIsModalPaymentOpen, setIsFormCheckoutOpen } from '../app/keranjangSlice';
 import { FaArrowLeft } from "react-icons/fa";
 import '../styles/FormCheckout.scss';
-import { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
 
-export default function FormCheckout({totalPrice, ekspedisi, payment}) {
+export default function FormCheckout({dataDiri, setDataDiri, payment, ekspedisi, totalPrice, dataKeranjang}) {
     const isFormCheckoutOpen = useSelector((state) => state.keranjangRed.isFormCheckoutOpen);
     const dispatch = useDispatch();
-    const [dataDiri, setDataDiri] = useState({
-        fullname: '',
-        email: '',
-        phone: '',
-        address: '',
-        street: '',
-        postalCode: ''
-    })
-
+    const pembelian = useHistory();
 
     const handleBack = () => {
         dispatch(setIsFormCheckoutOpen({formcheckout: false}));
-        dispatch(setIsKemejaKeranjangOpen({modal: true}));
+        dispatch(setIsModalPaymentOpen({modalpayment: true}));
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(setIsFormCheckoutOpen({formcheckout: false}));
-        dispatch(setIsModalEkspedisiOpen({modal: true}));
-        setDataDiri({
-            fullname: '',
-            email: '',
-            phone: '',
-            address: '',
-            street: '',
-            postalCode: ''
-        })
+        pembelian.push({
+            pathname: "/confirm-checkout",
+            data: dataDiri,
+            payment: payment,
+            ekspedisi: ekspedisi,
+            totalPrice: totalPrice,
+            dataKeranjang: dataKeranjang?.keranjang
+          });
+        // dispatch(setIsModalConfirmOpen({modalconfirm: true}));
+        // setDataDiri({
+        //     fullname: '',
+        //     email: '',
+        //     phone: '',
+        //     address: '',
+        //     street: '',
+        //     postalCode: ''
+        // })
     }
 
     return(

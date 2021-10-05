@@ -1,0 +1,94 @@
+@import "mixins";
+@import "variables";
+
+.confirm-checkout {
+  @include display-flex();
+  position: relative;
+  height: 100%;
+
+  .pembelian {
+    width: 90vw;
+    padding: 20px;
+    border: 1px solid $semi-medium-gray;
+    @include display-grid(
+      10px 0,
+      auto,
+      auto,
+      "fullname" "phone" "email" "street" "address" "postal" "products" "total"
+        "ekspedisi" "payment" "buttons"
+    );
+    font-size: 0.8rem;
+
+    ul {
+      width: 100%;
+      list-style: none;
+      @include display-grid(0 5px, 4fr 1fr 6fr, auto, "a b c");
+    }
+
+    .fullname {
+      grid-area: fullname;
+    }
+
+    .phone {
+      grid-area: phone;
+    }
+
+    .email {
+      grid-area: email;
+    }
+
+    .street {
+      grid-area: street;
+    }
+
+    .address {
+      grid-area: address;
+    }
+
+    .products {
+      grid-area: products;
+    }
+
+    .total {
+      grid-area: total;
+    }
+
+    .ekspedisi {
+      grid-area: ekspedisi;
+    }
+
+    .payment {
+      grid-area: payment;
+    }
+
+    .btn-wrapper {
+      grid-area: buttons;
+      margin-top: 30px;
+      @include display-flex();
+
+      .btn {
+        width: 100%;
+      }
+
+      .btn-change {
+        background-color: transparent;
+      }
+
+      .btn-continue {
+        margin-top: 15px;
+        background-color: #343434;
+        border: 1px solid #343434;
+        color: white;
+      }
+    }
+  }
+}
+
+@include breakpoint(tablet) {
+  .confirm-checkout {
+    .pembelian {
+      width: 600px;
+      font-size: 1rem;
+    }
+  }
+}

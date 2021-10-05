@@ -103,3 +103,16 @@
     margin: 15px 0 0 0;
   }
 }
+
+@include breakpoint(tablet) {
+  .item-keranjang {
+    .item {
+      @include display-grid(
+        20px 10px,
+        1fr 4fr,
+        auto,
+        "photo description action"
+      );
+    }
+  }
+}

@@ -5,12 +5,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsKemejaKeranjangOpen, setIsModalEkspedisiOpen } from '../app/keranjangSlice';
 import { useEffect, useState } from 'react';
 import ModalEkspedisi from "./ModalEkspedisi";
+import ModalPayment from "./ModalPayment";
+import ModalConfirm from "./ModalConfirm";
+import FormCheckout from "./FormCheckout";
 
 export default function ModalKeranjang({dataKeranjang, deleteKeranjang, editKeranjang}) {
+    const isFormCheckoutOpen = useSelector((state) => state.keranjangRed.isFormCheckoutOpen);
+    const isModalPaymentOpen = useSelector((state) => state.keranjangRed.isModalPaymentOpen);
     const isModalKeranjangOpen = useSelector((state) => state.keranjangRed.isModalKeranjangOpen);
     const isModalEkspedisiOpen = useSelector((state) => state.keranjangRed.isModalEkspedisiOpen);
+    const isModalConfirmOpen = useSelector((state) => state.keranjangRed.isModalConfirmOpen);
     const dispatch = useDispatch();
     const [totalPrice, setTotalPrice] = useState(0);
+    const [ekspedisi, setEkspedisi] = useState('');
+    const [payment, setPayment] = useState('');
+    const [dataDiri, setDataDiri] = useState({
+        fullname: '',
+        email: '',
+        phone: '',
+        address: '',
+        street: '',
+        postalCode: ''
+    })
 
     useEffect(() => {
         let total=0;
@@ -28,7 +44,15 @@ export default function ModalKeranjang({dataKeranjang, deleteKeranjang, editKera
     return(
         <>
         {
-            !isModalEkspedisiOpen?
+            isModalEkspedisiOpen?
+            <ModalEkspedisi setEkspedisi={setEkspedisi}/>
+            : isModalPaymentOpen ?
+            <ModalPayment setPayment={setPayment}/>
+            : isFormCheckoutOpen ?
+            <FormCheckout dataKeranjang={dataKeranjang} setDataDiri={setDataDiri} dataDiri={dataDiri} payment={payment} ekspedisi={ekspedisi} totalPrice={totalPrice}/>
+            : 
+            // : isModalConfirmOpen ?
+            // <ModalConfirm data={dataDiri} payment={payment} ekspedisi={ekspedisi} totalPrice={totalPrice}/> :
             <div className={isModalKeranjangOpen ? "modal-keranjang-wrapper active" : "modal-keranjang-wrapper"}>
                 <div className="modal-keranjang">
                     <div className="title-wrapper">
@@ -69,8 +93,6 @@ export default function ModalKeranjang({dataKeranjang, deleteKeranjang, editKera
                     </button>
                 </div>
             </div>
-            :
-            <ModalEkspedisi totalPrice={totalPrice}/>
         }
         </>
     );

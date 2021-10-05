@@ -2,14 +2,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsModalEkspedisiOpen, setIsFormCheckoutOpen, setIsModalPaymentOpen } from '../app/keranjangSlice';
 import { FaArrowLeft } from "react-icons/fa";
 import '../styles/ModalPayment.scss';
-import { useState, useEffect } from 'react';
-import FormCheckout from './FormCheckout';
 
-export default function ModalPayment({totalPrice, ekspedisi}) {
-    const isFormCheckoutOpen = useSelector((state) => state.keranjangRed.isFormCheckoutOpen);
+export default function ModalPayment({setPayment}) {
     const isModalPaymentOpen = useSelector((state) => state.keranjangRed.isModalPaymentOpen);
     const dispatch = useDispatch();
-    const [payment, setPayment] = useState('');
 
     const handleBack = () => {
         dispatch(setIsModalPaymentOpen({modalpayment: false}));
@@ -23,9 +19,6 @@ export default function ModalPayment({totalPrice, ekspedisi}) {
     }
 
     return(
-        <>
-        {
-            !isFormCheckoutOpen?
             <div className={isModalPaymentOpen ? "modal-payment-wrapper active" : "modal-payment-wrapper"}>
                 <div className="modal-payment">
                     <button className="btn-back" onClick={handleBack}>
@@ -49,9 +42,5 @@ export default function ModalPayment({totalPrice, ekspedisi}) {
                     </button>
                 </div>
             </div>
-            :
-            <FormCheckout totalPrice={totalPrice} ekspedisi={ekspedisi} payment={payment} />
-        }
-        </>
     );
 }

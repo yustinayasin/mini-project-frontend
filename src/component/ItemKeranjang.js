@@ -1,10 +1,8 @@
 import { FaTrashAlt } from "react-icons/fa";
 import '../styles/ItemKeranjang.scss';
 import photoProduct from '../photoproducts';
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setIsKemejaKeranjangOpen, setIsModalSizeOpen, setIsKeranjangEdit, setKeranjangEdit } from '../app/keranjangSlice';
-import ModalSize from '../component/ModalSize';
 
 export default function ItemKeranjang({item, deleteKeranjang, editKeranjang}) {
     const dispatch = useDispatch();
