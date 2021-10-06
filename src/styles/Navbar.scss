@@ -56,9 +56,10 @@
             margin-left: 10px;
             font-size: 1.9rem;
             cursor: pointer;
+            z-index: 2;
           }
 
-          div {
+          .menu-acc {
             position: absolute;
             bottom: -75px;
             z-index: 1;
@@ -181,7 +182,7 @@
               font-size: 2.5rem;
             }
 
-            div {
+            .menu-acc {
               right: -5px;
               width: 150px;
               bottom: -110px;

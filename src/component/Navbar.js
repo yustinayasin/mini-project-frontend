@@ -15,6 +15,16 @@ export default function Navbar() {
     const [user, loading, error] = useAuthState(auth);
     const [isAccountOpen, setIsAccountOpen] = useState(false);
 
+    useEffect(() => {
+        console.log(isAccountOpen);
+    }, [isAccountOpen]);
+
+    const handleClick = () => {
+        console.log(isAccountOpen);
+        setIsAccountOpen(!isAccountOpen);
+        console.log(isAccountOpen);
+    }
+
     return(
         <div className="navbar">
             <h1 className="brand-name">Kemejaku</h1>
@@ -34,8 +44,8 @@ export default function Navbar() {
                         {
                             user ?
                             <div className="account">
-                                <FaUserCircle className="account-icon" onClick={() => setIsAccountOpen(!isAccountOpen)}/>
-                                <div className={isAccountOpen ? "active" : ""}>
+                                <FaUserCircle className="account-icon" onClick={handleClick}/>
+                                <div className={isAccountOpen ? "active menu-acc" : "menu-acc"}>
                                     <div className={isAccountOpen ? "active segitiga" : "segitiga"}></div>
                                     <a className="btn-account">My Account</a> 
                                     <button className="btn-logout" onClick={logout}>Logout</button> 
