@@ -11,20 +11,20 @@
     text-align: center;
     background-color: #dcdcdc;
     padding: 30px;
+  }
 
-    @at-root #{&}__textBox {
-      padding: 10px;
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
+  @at-root #{&}__textBox {
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 
-    @at-root #{&}__btn {
-      padding: 10px;
-      font-size: 18px;
-      margin-bottom: 10px;
-      border: none;
-      color: white;
-      background-color: black;
-    }
+  @at-root #{&}__btn {
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border: none;
+    color: white;
+    background-color: black;
   }
 }
