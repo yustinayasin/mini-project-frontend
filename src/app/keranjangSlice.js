@@ -8,13 +8,14 @@ const initialState = {
   isFormCheckoutOpen: false,
   isModalEkspedisiOpen: false,
   isModalPaymentOpen: false,
+  isModalAddressOpen: false,
+  isModalChangeAddressOpen: false,
   isKeranjangEdit: false,
   keranjangEdit: {
-    id: null,
+    id_keranjang: null,
     id_kemeja: null,
     jumlah: null,
-    size: '',
-    pembelian_id: null
+    size: ''
   }
 }
 
@@ -47,10 +48,21 @@ const keranjangReducer = createSlice({
         ...state, 
         isFormCheckoutOpen: action.payload.formcheckout};
     },
+    setIsModalChangeAddressOpen: (state, action) => {
+      console.log('masuk');
+      return {
+        ...state, 
+        isModalChangeAddressOpen: action.payload.modalchangeaddress};
+    },
     setIsModalEkspedisiOpen: (state, action) => {
       return {
         ...state, 
         isModalEkspedisiOpen: action.payload.modalekspedisi};
+    },
+    setIsModalAddressOpen: (state, action) => {
+      return {
+        ...state, 
+        isModalAddressOpen: action.payload.modaladdress};
     },
     setIsModalPaymentOpen: (state, action) => {
       return {
@@ -67,11 +79,10 @@ const keranjangReducer = createSlice({
       return {
         ...state,
         keranjangEdit: {
-          id: action.payload.id,
+          id_keranjang: action.payload.id_keranjang,
           id_kemeja: action.payload.id_kemeja,
           jumlah: action.payload.jumlah,
-          size: action.payload.size,
-          pembelian_id: action.payload.pembelian_id
+          size: action.payload.size
         }
       }
     }
@@ -79,6 +90,6 @@ const keranjangReducer = createSlice({
 })
 
 
-export const { setIsKemejaKeranjangOpen, setIsModalEkspedisiOpen, setIsModalPaymentOpen, setIsModalSizeOpen, setIsModalQuantityOpen, setIsModalConfirmOpen, setIsFormCheckoutOpen, setKeranjangEdit, setIsKeranjangEdit } = keranjangReducer.actions
+export const { setIsKemejaKeranjangOpen, setIsModalChangeAddressOpen, setIsModalAddressOpen, setIsModalEkspedisiOpen, setIsModalPaymentOpen, setIsModalSizeOpen, setIsModalQuantityOpen, setIsModalConfirmOpen, setIsFormCheckoutOpen, setKeranjangEdit, setIsKeranjangEdit } = keranjangReducer.actions
 
 export default keranjangReducer.reducer

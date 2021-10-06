@@ -1,21 +1,90 @@
+import { useState, useEffect } from 'react';
 import ModalKeranjang from '../component/ModalKeranjang';
-import useInsertKeranjang from '../hooks/useAddKeranjang';
-import useDeleteKeranjang from '../hooks/useDeleteKeranjang';
-import useEditKeranjang from '../hooks/useEditKeranjang';
-import useSubscribeKeranjang from '../hooks/useSubscribeKeranjang';
+import useAddKemejaKeranjang from '../hooks/useAddKemejaKeranjang';
+import useDeleteKemejaKeranjang from '../hooks/useDeleteKemejaKeranjang';
+import useEditKemejaKeranjang from '../hooks/useEditKemejaKeranjang';
+import useSubscribeCheckKeranjang from '../hooks/useSubscribeCheckKeranjang';
+import useGetUser from '../hooks/useGetUser';
+import useEditUser from '../hooks/useEditUser';
 import ModalSize from '../component/ModalSize';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
 import Navbar from '../component/Navbar';
 import Footer from '../component/Footer';
 import '../styles/ConfirmCheckout.scss';
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
+import useAddPembelian from '../hooks/useAddPembelian';
+import useEditKemeja from '../hooks/useEditKemeja';
+import useEditKeranjang from '../hooks/useEditKeranjang';
 
 export default function AboutUs() {
-    const pembelian = useLocation();
-    const {dataKeranjang, loadingKeranjang} = useSubscribeKeranjang();
-    const {insertKeranjang, loadingInsert} = useInsertKeranjang();
-    const {deleteKeranjang, loadingDelete} = useDeleteKeranjang();
-    const {editKeranjang, loadingEdit} = useEditKeranjang();
+    const [keranjangQuery, setKeranjangQuery] = useState({
+        variables: {where: {}}
+      });
+    
+      const [userQuery, setUserQuery] = useState({
+        variables: {where: {}}
+      });
 
+    const pembelian = useLocation();
+    const [user] = useAuthState(auth);
+    const {dataUser, loadingUser} = useGetUser(userQuery);
+    const {dataCheckKeranjang, loadingCheckKeranjang, errorCheck} = useSubscribeCheckKeranjang(keranjangQuery);
+    const {insertKemejaKeranjangFunction, loadingInsertKemejaKeranjang} = useAddKemejaKeranjang();
+    const {deleteKemejaKeranjangFunction, loadingKemejaKeranjangDelete} = useDeleteKemejaKeranjang();
+    const {editKemejaKeranjang, loadingEditKemejaKeranjang} = useEditKemejaKeranjang();
+    const {editUser, loadingEditUser} = useEditUser();
+    const {insertPembelianFunction} = useAddPembelian();
+    const {editKemeja, loadingEditKemeja} = useEditKemeja();
+    const {editKeranjang, loadingEditKeranjang} = useEditKeranjang();
+    const history = useHistory();
+
+    useEffect(() => {
+        if(user) {
+          setUserQuery({
+            variables: {
+              id: {
+                _eq: user.uid
+              }
+            }
+          });
+        }
+      }, [user]);
+
+      useEffect(() => {
+        if(user) {
+          console.log(user.uid);
+          setKeranjangQuery({
+            variables: {
+              _eq: user.uid
+            }
+          });
+        }
+      }, [user]);
+
+    const handleCheckout = () => {
+      editKeranjang({variables: {id: pembelian.dataCheckKeranjang.keranjang[0].id, checked: true}});
+      pembelian.dataCheckKeranjang.keranjang[0].kemeja_keranjangs.forEach((item) => {
+        if(item.size=='L') {
+          editKemeja({variables: {id: item.id_kemeja, _set: {stock_L: item.kemeja['stock_L']-item.jumlah}}});
+        } else if(item.size=='M') {
+          editKemeja({variables: {id: item.id_kemeja, _set: {stock_M: item.kemeja['stock_M']-item.jumlah}}});
+        } else {
+          editKemeja({variables: {id: item.id_kemeja, _set: {stock_S: item.kemeja['stock_S']-item.jumlah}}});
+        }
+      })
+      insertPembelianFunction({
+        variables: {
+          ekspedisi: pembelian.ekspedisi, 
+          id_keranjang: pembelian.dataCheckKeranjang.keranjang[0].id,
+          payment: pembelian.payment,
+          total: pembelian.totalPrice
+        }
+      })
+      alert('Cart has been checked out!');
+      history.push('/');
+    }
+    
     return(
         <div className="confirm-checkout">
             <Navbar/>
@@ -23,12 +92,12 @@ export default function AboutUs() {
                 <ul className="fullname">
                     <li>Full Name</li>
                     <li>:</li>
-                    <li>{pembelian.data.fullname}</li>
+                    <li>{pembelian.data.nama_panjang}</li>
                 </ul>
                 <ul className="phone">
                     <li>Phone Number</li>
                     <li>:</li>
-                    <li>{pembelian.data.phone}</li>
+                    <li>{pembelian.data.nomor_telepon}</li>
                 </ul>
                 <ul className="email">
                     <li>Email</li>
@@ -38,24 +107,24 @@ export default function AboutUs() {
                 <ul className="street">
                     <li>Street address</li>
                     <li>:</li>
-                    <li>{pembelian.data.street}</li>
+                    <li>{pembelian.data.jalan}</li>
                 </ul>
                 <ul className="address">
                     <li>Address</li>
                     <li>:</li>
-                    <li>{pembelian.data.address}</li>
+                    <li>{pembelian.data.alamat}</li>
                 </ul>
                 <ul className="postal">
                     <li>Postal Code</li>
                     <li>:</li>
-                    <li>{pembelian.data.postalCode}</li>
+                    <li>{pembelian.data.kode_pos}</li>
                 </ul>
                 <ul className="products">
                     <li>Products</li>
                     <li>:</li>
-                    <li class="list-products-confirm">
+                    <li className="list-products-confirm">
                         {
-                            pembelian.dataKeranjang.map((item, index) => {
+                            pembelian.dataCheckKeranjang?.keranjang[0]?.kemeja_keranjangs.map((item, index) => {
                                 return(
                                     <p key={index}>{item.jumlah} pcs {item.kemeja.nama} {item.size}</p>
                                 );
@@ -78,29 +147,23 @@ export default function AboutUs() {
                     <li>:</li>
                     <li>{pembelian.payment}</li>
                 </ul>
-                {/* <ul>
-                    <li>{pembelian.data.fullname}</li>
-                    <li>{pembelian.data.phone}</li>
-                    <li>{pembelian.data.email}</li>
-                    <li>{pembelian.data.street}</li>
-                    <li>{pembelian.data.address}</li>
-                    <li>{pembelian.data.postalCode}</li>
-                    <li>Products</li>
-                    <li>{pembelian.totalPrice}</li>
-                    <li>{pembelian.ekspedisi}</li>
-                    <li>{pembelian.payment}</li>
-                </ul> */}
                 <div className="btn-wrapper">
-                    <button className="btn btn-change">Change Delivery Address</button>
-                    <button className="btn btn-continue">Continue</button>
+                    <button className="btn btn-change" onClick={handleCheckout}>Process Checkout</button>
+                    {/* <button className="btn btn-continue">Process Checkout</button> */}
                 </div>
             </div>
             <ModalKeranjang 
-                dataKeranjang={dataKeranjang} 
-                deleteKeranjang={deleteKeranjang} 
-                editKeranjang={editKeranjang}
+                dataCheckKeranjang={dataCheckKeranjang} 
+                deleteKemejaKeranjangFunction={deleteKemejaKeranjangFunction} 
+                editKemejaKeranjang={editKemejaKeranjang}
+                dataUser={dataUser?.users[0]}
+                editUser={editUser}
             />
-            <ModalSize insertKeranjang={insertKeranjang} editKeranjang={editKeranjang}/>
+            <ModalSize 
+                insertKemejaKeranjangFunction={insertKemejaKeranjangFunction} 
+                editKemejaKeranjang={editKemejaKeranjang}
+                dataCheckKeranjang={dataCheckKeranjang}
+            />
             <Footer/>
         </div>
     );

@@ -1,9 +1,9 @@
 @import "mixins";
 @import "variables";
 
-.modal__change__wrapper {
+.modal__address__wrapper {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 60px 25px 50px 20px;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
   z-index: 1;
   width: 100%;
 
-  .modal__change {
+  .modal__address {
     border-radius: 10px;
     width: 300px;
     background-color: white;
@@ -43,14 +43,29 @@
       font-size: 1.2rem;
     }
 
-    @at-root #{&}__btn {
+    @at-root #{&}__card {
+      .nama {
+        font-weight: 600;
+      }
+    }
+
+    .btn {
       width: 100%;
       border-radius: 5px;
       padding: 10px 0;
+    }
+
+    @at-root #{&}__change {
       background-color: transparent;
       border: 1px solid black;
       margin: 20px 0 10px 0;
-      cursor: pointer;
+    }
+
+    @at-root #{&}__continue {
+      background-color: #343434;
+      border: 1px solid #343434;
+      color: white;
+      position: relative;
     }
   }
 

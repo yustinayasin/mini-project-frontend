@@ -2,7 +2,7 @@
 @import "variables";
 
 .detail-card {
-  @include display-flex(center, flex-start, column);
+  @include display-flex();
   width: 100%;
 
   img {
@@ -10,7 +10,7 @@
   }
 
   .details {
-    width: 100%;
+    width: 350px;
     margin-top: 20px;
     padding: 0 20px;
     @include display-grid(10px 0, auto, auto, none);
@@ -80,5 +80,27 @@
       margin-top: 30px;
       font-size: 0.9rem;
     }
+  }
+}
+
+@include breakpoint(tablet) {
+  .detail-card {
+    @include display-flex(center, flex-start, row);
+
+    img {
+      width: 300px;
+    }
+
+    .details {
+      margin: 0;
+      font-size: 1rem;
+    }
+  }
+}
+
+@include breakpoint(laptop) {
+  .detail-card {
+    @include display-flex(center, flex-start, row);
+    margin-top: 20px;
   }
 }

@@ -1,0 +1,57 @@
+@import "mixins";
+@import "variables";
+
+.penerima {
+  @include display-grid(15px 5px, 1fr 5fr, auto, "checked konten" "btns btns");
+
+  @at-root #{&}__checked {
+    grid-area: checked;
+    border: none;
+    background-color: transparent;
+
+    svg {
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+  }
+  @at-root #{&}__content {
+    grid-area: konten;
+  }
+
+  @at-root #{&}__btn__wrapper {
+    grid-area: btns;
+    @include display-grid(
+      5px,
+      1fr 1fr,
+      1fr 1fr,
+      "delivery delivery" "edit hapus"
+    );
+  }
+
+  @at-root #{&}__btn {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+
+  @at-root #{&}__btn__deliver {
+    grid-area: delivery;
+    background-color: #343434;
+    border: 1px solid #343434;
+    color: white;
+    position: relative;
+  }
+
+  @at-root #{&}__btn__edit {
+    grid-area: edit;
+    background-color: transparent;
+    border: 1px solid black;
+  }
+
+  @at-root #{&}__btn__remove {
+    grid-area: hapus;
+    background-color: transparent;
+    border: 1px solid black;
+  }
+}

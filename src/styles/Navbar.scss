@@ -30,18 +30,99 @@
         }
       }
 
-      .shopping-bag {
-        cursor: pointer;
-        background-color: $black;
-        border: none;
-        border-radius: 30px;
-        width: 30px;
-        height: 30px;
+      .btn-right {
+        @include display-flex(center, center, row);
 
-        .shopping-icon {
-          color: $white;
-          z-index: 2;
-          font-size: 0.8rem;
+        .shopping-bag {
+          cursor: pointer;
+          background-color: $black;
+          border: none;
+          border-radius: 30px;
+          width: 30px;
+          height: 30px;
+
+          .shopping-icon {
+            color: $white;
+            z-index: 2;
+            font-size: 0.8rem;
+          }
+        }
+
+        .account {
+          position: relative;
+          @include display-flex();
+
+          .account-icon {
+            margin-left: 10px;
+            font-size: 1.9rem;
+            cursor: pointer;
+          }
+
+          div {
+            position: absolute;
+            bottom: -75px;
+            z-index: 1;
+            width: 100px;
+            background-color: $medium-gray;
+            right: 0;
+            opacity: 0;
+
+            a {
+              color: white;
+              font-size: 0.9rem;
+              cursor: pointer;
+              width: 100%;
+              text-align: center;
+              z-index: 2;
+              display: block;
+              padding: 5px;
+
+              &:hover {
+                background-color: $semi-medium-gray;
+              }
+            }
+
+            .btn-logout {
+              color: white;
+              font-size: 0.9rem;
+              outline: none;
+              background-color: transparent;
+              border: none;
+              cursor: pointer;
+              width: 100%;
+              padding: 5px;
+
+              &:hover {
+                background-color: $semi-medium-gray;
+              }
+            }
+
+            .segitiga {
+              width: 0;
+              height: 0;
+              border-left: 15px solid transparent;
+              border-right: 15px solid transparent;
+              border-bottom: 15px solid $medium-gray;
+              top: -15px;
+              position: absolute;
+              background-color: transparent;
+              opacity: 0;
+              right: 0;
+
+              &.active {
+                opacity: 100%;
+              }
+            }
+
+            &.active {
+              opacity: 100%;
+            }
+          }
+        }
+
+        .btn-login {
+          margin-left: 10px;
+          padding: 6px 20px;
         }
       }
     }
@@ -85,12 +166,40 @@
           }
         }
 
-        .shopping-bag {
-          width: 40px;
-          height: 40px;
+        .btn-right {
+          .shopping-bag {
+            width: 40px;
+            height: 40px;
 
-          .shopping-icon {
-            font-size: 1rem;
+            .shopping-icon {
+              font-size: 1rem;
+            }
+          }
+
+          .account {
+            .account-icon {
+              font-size: 2.5rem;
+            }
+
+            div {
+              right: -5px;
+              width: 150px;
+              bottom: -110px;
+
+              a,
+              .btn-logout {
+                padding: 10px;
+                font-size: 1rem;
+              }
+
+              .segitiga {
+                right: 0;
+                top: -20px;
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                border-bottom: 20px solid $medium-gray;
+              }
+            }
           }
         }
       }
@@ -115,15 +224,6 @@
 
         .menu-bars {
           display: none;
-        }
-
-        .shopping-bag {
-          width: 40px;
-          height: 40px;
-
-          .shopping-icon {
-            font-size: 1rem;
-          }
         }
       }
 

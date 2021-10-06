@@ -6,7 +6,7 @@ import '../styles/ModalSize.scss';
 import ModalQuantity from '../component/ModalQuantity';
 import { useState, useEffect } from 'react';
 
-export default function ModalSize({insertKeranjang, editKeranjang}) {
+export default function ModalSize({dataCheckKeranjang, insertKemejaKeranjangFunction, editKemejaKeranjang}) {
     
     const isModalSizeOpen = useSelector((state) => state.keranjangRed.isModalSizeOpen);
     const isKeranjangEdit = useSelector((state) => state.keranjangRed.isKeranjangEdit);
@@ -28,7 +28,7 @@ export default function ModalSize({insertKeranjang, editKeranjang}) {
     const editSize = (e) => {
         if(item['stock_'+e.target.value]>0) {
             dispatch(setIsKeranjangEdit({isKeranjangEdit: false}));
-            editKeranjang({variables: {id: keranjangEdit.id, jumlah: keranjangEdit.jumlah, size: e.target.value}});
+            editKemejaKeranjang({variables: {id_keranjang: keranjangEdit.id_keranjang, id_kemeja: keranjangEdit.id_kemeja, jumlah: keranjangEdit.jumlah, size: e.target.value}});
             dispatch(setIsModalSizeOpen({modalsize: false}));
         }
     }
@@ -61,7 +61,7 @@ export default function ModalSize({insertKeranjang, editKeranjang}) {
                 </div>
             </div>
             :
-            <ModalQuantity size={size} insertKeranjang={insertKeranjang}/>
+            <ModalQuantity dataCheckKeranjang={dataCheckKeranjang} size={size} insertKemejaKeranjangFunction={insertKemejaKeranjangFunction}/>
         }
         </>
     );

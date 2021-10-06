@@ -2,21 +2,59 @@ import about1 from '../images/about-1.jpg';
 import about2 from '../images/about-2.jpg';
 import about3 from '../images/about-3.jpg';
 import ModalKeranjang from '../component/ModalKeranjang';
-import useInsertKeranjang from '../hooks/useAddKeranjang';
-import useDeleteKeranjang from '../hooks/useDeleteKeranjang';
-import useEditKeranjang from '../hooks/useEditKeranjang';
-import useSubscribeKeranjang from '../hooks/useSubscribeKeranjang';
 import ModalSize from '../component/ModalSize';
 import Navbar from '../component/Navbar';
 import Footer from '../component/Footer';
 import '../styles/AboutUs.scss';
+import { useState, useEffect } from 'react';
+import useAddKemejaKeranjang from '../hooks/useAddKemejaKeranjang';
+import useDeleteKemejaKeranjang from '../hooks/useDeleteKemejaKeranjang';
+import useEditKemejaKeranjang from '../hooks/useEditKemejaKeranjang';
+import useSubscribeCheckKeranjang from '../hooks/useSubscribeCheckKeranjang';
+import useGetUser from '../hooks/useGetUser';
+import useEditUser from '../hooks/useEditUser';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
 
 export default function AboutUs() {
-    const {dataKeranjang, loadingKeranjang} = useSubscribeKeranjang();
-    const {insertKeranjang, loadingInsert} = useInsertKeranjang();
-    const {deleteKeranjang, loadingDelete} = useDeleteKeranjang();
-    const {editKeranjang, loadingEdit} = useEditKeranjang();
+    const [keranjangQuery, setKeranjangQuery] = useState({
+        variables: {where: {}}
+    });
+    
+    const [userQuery, setUserQuery] = useState({
+        variables: {where: {}}
+    });
 
+    const [user] = useAuthState(auth);
+    const {dataUser, loadingUser} = useGetUser(userQuery);
+    const {dataCheckKeranjang, loadingCheckKeranjang, errorCheck} = useSubscribeCheckKeranjang(keranjangQuery);
+    const {insertKemejaKeranjangFunction, loadingInsertKemejaKeranjang} = useAddKemejaKeranjang();
+    const {deleteKemejaKeranjangFunction, loadingKemejaKeranjangDelete} = useDeleteKemejaKeranjang();
+    const {editKemejaKeranjang, loadingEditKemejaKeranjang} = useEditKemejaKeranjang();
+    const {editUser, loadingEditUser} = useEditUser();
+
+    useEffect(() => {
+        if(user) {
+          setUserQuery({
+            variables: {
+              id: {
+                _eq: user.uid
+              }
+            }
+          });
+        }
+      }, [user]);
+
+      useEffect(() => {
+        if(user) {
+          console.log(user.uid);
+          setKeranjangQuery({
+            variables: {
+              _eq: user.uid
+            }
+          });
+        }
+      }, [user]);
     return(
         <div className="about-us">
             <Navbar/>
@@ -31,11 +69,17 @@ export default function AboutUs() {
                 </p>
             </div>
             <ModalKeranjang 
-                dataKeranjang={dataKeranjang} 
-                deleteKeranjang={deleteKeranjang} 
-                editKeranjang={editKeranjang}
+                dataCheckKeranjang={dataCheckKeranjang} 
+                deleteKemejaKeranjangFunction={deleteKemejaKeranjangFunction} 
+                editKemejaKeranjang={editKemejaKeranjang}
+                dataUser={dataUser?.users[0]}
+                editUser={editUser}
             />
-            <ModalSize insertKeranjang={insertKeranjang} editKeranjang={editKeranjang}/>
+            <ModalSize 
+                insertKemejaKeranjangFunction={insertKemejaKeranjangFunction} 
+                editKemejaKeranjang={editKemejaKeranjang}
+                dataCheckKeranjang={dataCheckKeranjang}
+            />
             <Footer/>
         </div>
     );

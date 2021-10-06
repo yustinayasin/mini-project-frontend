@@ -9,6 +9,9 @@ import AboutUs from './pages/AboutUs';
 import ConfirmCheckout from './pages/ConfirmCheckout';
 import NotFound from './pages/NotFound';
 import reportWebVitals from './reportWebVitals';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Reset from './pages/Reset';
 import { BrowserRouter as Router, withRouter, Route, Switch } from "react-router-dom";
 import {
   ApolloClient,
@@ -23,23 +26,23 @@ import { store } from './app/store'
 import { Provider } from 'react-redux';
 
 const wsLink = new WebSocketLink({
-  uri: 'wss://diverse-trout-25.hasura.app/v1/graphql',
+  uri: 'wss://login-kemejaku.hasura.app/v1/graphql',
   options: {
     reconnect: true,
     connectionParams: {
       headers: {
         'content-type': 'application/json',
-        'x-hasura-admin-secret': '2NUK4ZsRTp59i4c0XqdR9T48q5PPpn5AbMk8MkBOUBUAB4OOaJ5X3wt29qrnljoU'
+        'x-hasura-admin-secret': 'LWE7d1e3y33fFmJwBbKzt01fy4ZQC6zMKqlRX1aWrGn2jtm3Z1rSuNDPu0TE8Fjk'
       }
     }
   }
 });
 
 const httpLink = new HttpLink({
-  uri: 'https://diverse-trout-25.hasura.app/v1/graphql',
+  uri: 'https://login-kemejaku.hasura.app/v1/graphql',
   headers: {
     'content-type': 'application/json',
-    'x-hasura-admin-secret': '2NUK4ZsRTp59i4c0XqdR9T48q5PPpn5AbMk8MkBOUBUAB4OOaJ5X3wt29qrnljoU'
+    'x-hasura-admin-secret': 'LWE7d1e3y33fFmJwBbKzt01fy4ZQC6zMKqlRX1aWrGn2jtm3Z1rSuNDPu0TE8Fjk'
   }
 });
 
@@ -72,6 +75,9 @@ ReactDOM.render(
             <Route path="/shop" exact component={Shop} />
             <Route path="/about-us" exact component={AboutUs} />
             <Route path="/confirm-checkout" exact component={ConfirmCheckout} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/register" exact component={Register} />
+            <Route path="/reset" exact component={Reset} />
             <Route component={NotFound} />
           </Switch>
         </Router>

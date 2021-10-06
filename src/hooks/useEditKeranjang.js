@@ -1,11 +1,11 @@
 import { useMutation } from '@apollo/client';
-import {editItem} from '../graphql/mutations';
+import {updateKeranjang} from '../graphql/mutations';
 
 export default function useEditKeranjang () {
-    const [editKeranjang, {loading: loadingEdit}] = useMutation(editItem);
+    const [editKeranjang, {loading: loadingEditKeranjang}] = useMutation(updateKeranjang);
 
     return {
         editKeranjang,
-        loadingEdit
+        loadingEditKeranjang
     }
 }

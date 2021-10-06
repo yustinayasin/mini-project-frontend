@@ -1,11 +1,11 @@
 import { useMutation } from '@apollo/client';
-import {insertItem} from '../graphql/mutations';
+import {insertKeranjang} from '../graphql/mutations';
 
 export default function useAddKeranjang () {
-    const [insertKeranjang, {loading: loadingInsert}] = useMutation(insertItem);
+    const [insertKeranjangFunction, {loading: loadingInsertKeranjang}] = useMutation(insertKeranjang);
 
     return {
-        insertKeranjang,
-        loadingInsert
+        insertKeranjangFunction,
+        loadingInsertKeranjang
     }
 }

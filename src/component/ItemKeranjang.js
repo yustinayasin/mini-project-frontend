@@ -2,25 +2,26 @@ import { FaTrashAlt } from "react-icons/fa";
 import '../styles/ItemKeranjang.scss';
 import photoProduct from '../photoproducts';
 import { useDispatch } from 'react-redux';
+import { setItem } from '../app/itemSlice';
 import { setIsKemejaKeranjangOpen, setIsModalSizeOpen, setIsKeranjangEdit, setKeranjangEdit } from '../app/keranjangSlice';
 
-export default function ItemKeranjang({item, deleteKeranjang, editKeranjang}) {
+export default function ItemKeranjang({item, id_keranjang, deleteKemejaKeranjangFunction, editKemejaKeranjang}) {
     const dispatch = useDispatch();
 
-
     const increaseJumlah = () => {
-        editKeranjang({variables: {id: item.id, jumlah: item.jumlah+1, size: item.size}});
+        editKemejaKeranjang({variables: {id_kemeja: item.id_kemeja, id_keranjang: id_keranjang, jumlah: item.jumlah+1, size: item.size}});
     }
 
     const decreaseJumlah = () => {
         if(item.jumlah!==0){
-            editKeranjang({variables: {id: item.id, jumlah: item.jumlah-1, size: item.size}});
+            editKemejaKeranjang({variables: {id_kemeja: item.id_kemeja, id_keranjang: id_keranjang, jumlah: item.jumlah-1, size: item.size}});
         }
     }
 
     const handleChangeSize = () => {
         dispatch(setIsKeranjangEdit({isKeranjangEdit: true}));
-        dispatch(setKeranjangEdit({id: item.id, id_kemeja: item.id_kemeja, jumlah: item.jumlah, size: item.size, pembelian_id: item.pembelian_id}))
+        dispatch(setItem({item: item.kemeja}));
+        dispatch(setKeranjangEdit({id_keranjang: id_keranjang, id_kemeja: item.id_kemeja, jumlah: item.jumlah, size: item.size}))
         dispatch(setIsKemejaKeranjangOpen({modal: false}));
         dispatch(setIsModalSizeOpen({modalsize: true}));
     }
@@ -44,7 +45,7 @@ export default function ItemKeranjang({item, deleteKeranjang, editKeranjang}) {
                         <span className="number">{item.jumlah}</span>
                         <button className="btn-increase" onClick={() => increaseJumlah()}>+</button>
                     </div>
-                    <button className="btn-delete" onClick={() => deleteKeranjang({variables: {id: item.id}})}>
+                    <button className="btn-delete" onClick={() => deleteKemejaKeranjangFunction({variables: {id_kemeja: item.id_kemeja, id_keranjang: id_keranjang}})}>
                         <FaTrashAlt />
                     </button>
                 </div>

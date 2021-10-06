@@ -3,24 +3,42 @@ import ProductCard from '../component/ProductCard';
 import Footer from '../component/Footer';
 import '../styles/Sale.scss';
 import useSubscribeKemeja from '../hooks/useSubscribeKemeja';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import ModalKeranjang from '../component/ModalKeranjang';
-import useInsertKeranjang from '../hooks/useAddKeranjang';
-import useDeleteKeranjang from '../hooks/useDeleteKeranjang';
-import useEditKeranjang from '../hooks/useEditKeranjang';
-import useSubscribeKeranjang from '../hooks/useSubscribeKeranjang';
+import useAddKemejaKeranjang from '../hooks/useAddKemejaKeranjang';
+import useDeleteKemejaKeranjang from '../hooks/useDeleteKemejaKeranjang';
+import useEditKemejaKeranjang from '../hooks/useEditKemejaKeranjang';
+import useSubscribeCheckKeranjang from '../hooks/useSubscribeCheckKeranjang';
+import useAddKeranjang from '../hooks/useAddKeranjang';
+import useGetUser from '../hooks/useGetUser';
+import useEditUser from '../hooks/useEditUser';
 import ModalSize from '../component/ModalSize';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
 
 
 function Sale() {
     const [kemejaGetQuery, setKemejaGetQuery] = useState({
         variables: {where: {}}
-      });
+    });
+
+    const [keranjangQuery, setKeranjangQuery] = useState({
+      variables: {where: {}}
+    });
+    
+    const [userQuery, setUserQuery] = useState({
+      variables: {where: {}}
+    });
+
+    const [user] = useAuthState(auth);
     const {data, loading, error} = useSubscribeKemeja(kemejaGetQuery);
-    const {dataKeranjang, loadingKeranjang} = useSubscribeKeranjang();
-    const {insertKeranjang, loadingInsert} = useInsertKeranjang();
-    const {deleteKeranjang, loadingDelete} = useDeleteKeranjang();
-    const {editKeranjang, loadingEdit} = useEditKeranjang();
+    const {dataUser, loadingUser} = useGetUser(userQuery);
+    const {dataCheckKeranjang, loadingCheckKeranjang, errorCheck} = useSubscribeCheckKeranjang(keranjangQuery);
+    const {insertKemejaKeranjangFunction, loadingInsertKemejaKeranjang} = useAddKemejaKeranjang();
+    const {deleteKemejaKeranjangFunction, loadingKemejaKeranjangDelete} = useDeleteKemejaKeranjang();
+    const {editKemejaKeranjang, loadingEditKemejaKeranjang} = useEditKemejaKeranjang();
+    const {editUser, loadingEditUser} = useEditUser();
+    const {insertKeranjangFunction, loadingInsertKeranjang} = useAddKeranjang();
 
     useEffect(() => {
         setKemejaGetQuery({
@@ -29,6 +47,17 @@ function Sale() {
           }
         });
       }, []);
+
+      useEffect(() => {
+        if(user) {
+          console.log(user.uid);
+          setKeranjangQuery({
+            variables: {
+              _eq: user.uid
+            }
+          });
+        }
+      }, [user]);
 
     return (
         <div className="sale">
@@ -39,16 +68,23 @@ function Sale() {
             <ProductCard
                 data={data}
                 isShop={true}
-                insertKeranjang={insertKeranjang}
+                dataCheckKeranjang={dataCheckKeranjang}
+                insertKeranjangFunction={insertKeranjangFunction}
             />
             }
         </div>
         <ModalKeranjang 
-            dataKeranjang={dataKeranjang} 
-            deleteKeranjang={deleteKeranjang} 
-            editKeranjang={editKeranjang}
+          dataCheckKeranjang={dataCheckKeranjang} 
+          deleteKemejaKeranjangFunction={deleteKemejaKeranjangFunction} 
+          editKemejaKeranjang={editKemejaKeranjang}
+          dataUser={dataUser?.users[0]}
+          editUser={editUser}
         />
-        <ModalSize insertKeranjang={insertKeranjang} editKeranjang={editKeranjang}/>
+        <ModalSize 
+          insertKemejaKeranjangFunction={insertKemejaKeranjangFunction} 
+          editKemejaKeranjang={editKemejaKeranjang}
+          dataCheckKeranjang={dataCheckKeranjang}
+        />
         <Footer/>
         </div>
     );

@@ -5,14 +5,14 @@ import { FaArrowLeft } from "react-icons/fa";
 import '../styles/ModalQuantity.scss';
 import { useState } from 'react';
 
-export default function ModalSize({size, insertKeranjang}) {
+export default function ModalSize({dataCheckKeranjang, size, insertKemejaKeranjangFunction}) {
     const isModalQuantityOpen = useSelector((state) => state.keranjangRed.isModalQuantityOpen);
     const item = useSelector((state) => state.itemRed.item);
     const dispatch = useDispatch();
 
     const addToBag = (e) => {
         if(item['stock_'+size]>=e.target.value) {
-            insertKeranjang({variables: {'id_kemeja': item.id, 'jumlah': e.target.value, 'size': size, 'pembelian_id': null}});
+            insertKemejaKeranjangFunction({variables: {'id_keranjang': dataCheckKeranjang.keranjang[0].id,'id_kemeja': item.id, 'jumlah': e.target.value, 'size': size}});
             alert('Item successfully added to cart!');
         }
     }

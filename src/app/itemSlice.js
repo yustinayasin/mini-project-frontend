@@ -6,10 +6,9 @@ const initialState = {
       nama: '',
       deskripsi: '',
       harga: null,
-      stock_l: null,
-      stock_s: null,
-      stock_m: null,
-      best_seller: false
+      stock_L: null,
+      stock_S: null,
+      stock_M: null
   }
 }
 

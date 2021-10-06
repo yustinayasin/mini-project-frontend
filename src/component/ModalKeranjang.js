@@ -2,74 +2,85 @@ import { FaShoppingBag, FaTruck } from "react-icons/fa";
 import ItemKeranjang from "./ItemKeranjang";
 import '../styles/ModalKeranjang.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsKemejaKeranjangOpen, setIsModalEkspedisiOpen } from '../app/keranjangSlice';
+import { setIsKemejaKeranjangOpen, setIsModalAddressOpen } from '../app/keranjangSlice';
 import { useEffect, useState } from 'react';
 import ModalEkspedisi from "./ModalEkspedisi";
 import ModalPayment from "./ModalPayment";
 import ModalConfirm from "./ModalConfirm";
 import FormCheckout from "./FormCheckout";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
+import { useHistory } from "react-router-dom";
+import ModalAddress from "./ModalAddress";
 
-export default function ModalKeranjang({dataKeranjang, deleteKeranjang, editKeranjang}) {
+export default function ModalKeranjang({dataCheckKeranjang, editUser, dataUser, deleteKemejaKeranjangFunction, editKemejaKeranjang}) {
+    const isModalAddressOpen = useSelector((state) => state.keranjangRed.isModalAddressOpen);
     const isFormCheckoutOpen = useSelector((state) => state.keranjangRed.isFormCheckoutOpen);
     const isModalPaymentOpen = useSelector((state) => state.keranjangRed.isModalPaymentOpen);
     const isModalKeranjangOpen = useSelector((state) => state.keranjangRed.isModalKeranjangOpen);
     const isModalEkspedisiOpen = useSelector((state) => state.keranjangRed.isModalEkspedisiOpen);
-    const isModalConfirmOpen = useSelector((state) => state.keranjangRed.isModalConfirmOpen);
+    //const isModalConfirmOpen = useSelector((state) => state.keranjangRed.isModalConfirmOpen);
+    
     const dispatch = useDispatch();
+    const history = useHistory();
+    const [user, loading, error] = useAuthState(auth);
     const [totalPrice, setTotalPrice] = useState(0);
     const [ekspedisi, setEkspedisi] = useState('');
     const [payment, setPayment] = useState('');
-    const [dataDiri, setDataDiri] = useState({
-        fullname: '',
-        email: '',
-        phone: '',
-        address: '',
-        street: '',
-        postalCode: ''
-    })
+    
+    const [idKeranjang, setIdKeranjang] = useState(0);
 
     useEffect(() => {
-        let total=0;
-        dataKeranjang?.keranjang.forEach((item) => {
-            total=total+item.kemeja.harga*item.jumlah;
-        })
-        setTotalPrice(total);
-    }, [dataKeranjang]);
+        if(dataCheckKeranjang) {
+            let total=0;
+            dataCheckKeranjang?.keranjang[0]?.kemeja_keranjangs?.forEach((item) => {
+                total=total+item.kemeja.harga*item.jumlah;
+            })
+            setIdKeranjang(dataCheckKeranjang?.keranjang[0]?.id)
+            setTotalPrice(total);
+        }
+    }, [dataCheckKeranjang]);
 
     const handleCheckout = () => {
-        dispatch(setIsKemejaKeranjangOpen({modal: false}));
-        dispatch(setIsModalEkspedisiOpen({modalekspedisi: true}));
+        if(user) {
+            dispatch(setIsModalAddressOpen({modaladdress: true}));
+            dispatch(setIsKemejaKeranjangOpen({modal: false}));
+        } else {
+            history.replace("/login");
+        }
     }
 
     return(
         <>
         {
-            isModalEkspedisiOpen?
+            isModalAddressOpen ?
+            <ModalAddress dataUser={dataUser} editUser={editUser}/>
+            : isModalEkspedisiOpen?
             <ModalEkspedisi setEkspedisi={setEkspedisi}/>
             : isModalPaymentOpen ?
-            <ModalPayment setPayment={setPayment}/>
-            : isFormCheckoutOpen ?
-            <FormCheckout dataKeranjang={dataKeranjang} setDataDiri={setDataDiri} dataDiri={dataDiri} payment={payment} ekspedisi={ekspedisi} totalPrice={totalPrice}/>
+            <ModalPayment dataUser={dataUser} setPayment={setPayment} dataCheckKeranjang={dataCheckKeranjang} payment={payment} ekspedisi={ekspedisi} totalPrice={totalPrice}/>
             : 
+            // isFormCheckoutOpen ?
+            // <FormCheckout dataCheckKeranjang={dataCheckKeranjang} setDataDiri={setDataDiri} dataDiri={dataDiri} payment={payment} ekspedisi={ekspedisi} totalPrice={totalPrice}/>
+            // : 
             // : isModalConfirmOpen ?
             // <ModalConfirm data={dataDiri} payment={payment} ekspedisi={ekspedisi} totalPrice={totalPrice}/> :
             <div className={isModalKeranjangOpen ? "modal-keranjang-wrapper active" : "modal-keranjang-wrapper"}>
                 <div className="modal-keranjang">
                     <div className="title-wrapper">
                         <FaShoppingBag />
-                        <span>My Bag ({dataKeranjang?.keranjang.length===0 ? "0" : dataKeranjang?.keranjang.length})</span>
+                        <span>My Bag ({dataCheckKeranjang?.keranjang[0]?.kemeja_keranjangs?.length===0 ? "0" : dataCheckKeranjang?.keranjang.length})</span>
                     </div>
                     <div className="items-wrapper">
                         {
-                            dataKeranjang?.keranjang.map((item) => {
+                            dataCheckKeranjang?.keranjang[0]?.kemeja_keranjangs?.map((item, index) => {
                                 return(
                                     <ItemKeranjang 
-                                        deleteKeranjang={deleteKeranjang} 
-                                        key={item.id} 
-                                        item={item} 
-                                        setTotalPrice={setTotalPrice} 
-                                        totalPrice={totalPrice}
-                                        editKeranjang={editKeranjang}
+                                        deleteKemejaKeranjangFunction={deleteKemejaKeranjangFunction} 
+                                        key={index} 
+                                        item={item}
+                                        id_keranjang={idKeranjang}
+                                        editKemejaKeranjang={editKemejaKeranjang}
                                     />
                                 );
                             })
