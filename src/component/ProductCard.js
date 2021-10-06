@@ -70,7 +70,7 @@ export default function ProductCard ({data, isShop, insertKeranjangFunction, dat
                             }}
                         > 
                             <img src={isSale ? photoProduct[item.id_kemeja-1]: photoProduct[item.id-1]} alt="product-image"/>
-                            <p className="harga">Rp {isSale ? item.kemeja.harga : item.harga}</p>
+                            <p className="harga">Rp {isSale ? item.kemeja.harga-(item.kemeja.harga*item.percent/100) : item.harga}</p>
                             <p className="product-name">{isSale ? item.kemeja.nama : item.nama}</p>
                         </Link>
                         <button className="btn btn-bag" onClick={() => addToBag(item)}>Add To Bag</button>

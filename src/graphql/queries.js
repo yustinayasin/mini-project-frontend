@@ -14,6 +14,7 @@ query MyQuery {
       id
       deskripsi
     }
+    percent
   }
 }
 `; 
